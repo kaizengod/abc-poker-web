@@ -207,12 +207,12 @@
 
         <!-- CTA Buttons & Mobile Menu Toggle -->
         <div class="flex items-center gap-2 sm:gap-3">
-          <button onclick="openModal('platforms-modal')" class="interactive-btn hidden sm:flex items-center gap-2.5 px-4 py-2 rounded-xl text-xs font-bold text-cyan-300 bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400">
-            <img src="/logos/pokerbros.png" class="h-6 w-auto object-contain" alt="PokerBros" />
-            <img src="/logos/suprema poker.png" class="h-5 w-auto object-contain" alt="Suprema" />
-            <img src="/logos/clubgg.jpg" class="h-5 w-auto object-contain rounded" alt="ClubGG" />
-            <span class="ml-1 text-white font-mono font-bold">IDs Oficiales</span>
-            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <button onclick="openModal('platforms-modal')" class="interactive-btn hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold text-cyan-300 bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400">
+            <img src="/logos/pokerbros.png" class="h-5 w-auto object-contain max-h-[18px]" alt="PokerBros" />
+            <img src="/logos/suprema poker.png" class="h-3.5 w-auto object-contain max-h-[14px]" alt="Suprema" />
+            <img src="/logos/clubgg.jpg" class="h-3.5 w-auto object-contain rounded max-h-[14px]" alt="ClubGG" />
+            <span class="ml-1 text-white font-mono font-bold text-[11px]">IDs Oficiales</span>
+            <i data-lucide="chevron-down" class="w-3 h-3 text-cyan-400"></i>
           </button>
 
           <button onclick="openWhatsApp('¡Hola ABC Poker! Deseo unirme al club o solicitar información de fichas.', 'general')" class="interactive-btn flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
@@ -249,9 +249,9 @@
 
         <div class="pt-2 flex flex-col gap-2">
           <button onclick="openModal('platforms-modal'); toggleMobileMenu()" class="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-xs font-bold text-cyan-300 bg-slate-900 border border-cyan-500/40">
-            <img src="/logos/pokerbros.png" class="h-5 w-auto object-contain" alt="PokerBros" />
-            <img src="/logos/suprema poker.png" class="h-4 w-auto object-contain" alt="Suprema" />
-            <img src="/logos/clubgg.jpg" class="h-4 w-auto object-contain rounded" alt="ClubGG" />
+            <img src="/logos/pokerbros.png" class="h-4.5 w-auto object-contain max-h-[18px]" alt="PokerBros" />
+            <img src="/logos/suprema poker.png" class="h-3.5 w-auto object-contain max-h-[14px]" alt="Suprema" />
+            <img src="/logos/clubgg.jpg" class="h-3.5 w-auto object-contain rounded max-h-[14px]" alt="ClubGG" />
             <span class="ml-1 text-white font-mono font-bold">IDs Oficiales</span>
           </button>
         </div>
@@ -259,10 +259,10 @@
     </header>
 
     <!-- SECTION 1: HERO SECTION -->
-    <section id="hero" class="relative pt-32 lg:pt-40 pb-28 min-h-[88vh] flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <section id="hero" class="relative pt-44 sm:pt-36 lg:pt-40 pb-20 min-h-[90vh] flex items-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 sm:mt-0">
         
-        <!-- Left Aligned Frosted Panel for Maximum Readability and 3D Canvas Background Visibility -->
+        <!-- Left Aligned Frosted Panel with extra vertical offset on mobile for 3D Killer Whale visual prominence -->
         <div class="max-w-xl lg:max-w-2xl text-left flex flex-col items-start bg-slate-950/20 sm:bg-slate-950/40 backdrop-blur-sm sm:backdrop-blur-md p-4 sm:p-10 rounded-3xl border border-cyan-500/20 shadow-2xl">
           
           <!-- Badge -->
@@ -307,7 +307,7 @@
               <!-- PokerBros Card -->
               <div class="p-3 sm:p-3.5 rounded-xl bg-slate-950/90 border border-amber-500/30 space-y-2">
                 <div class="flex items-center justify-between">
-                  <img src="/logos/pokerbros.png" alt="PokerBros" class="h-5 sm:h-6 w-auto object-contain" />
+                  <img src="/logos/pokerbros.png" alt="PokerBros" class="h-4.5 sm:h-5 w-auto object-contain max-h-[18px]" />
                   <span class="text-[9px] font-mono text-amber-400 font-bold uppercase">PokerBros</span>
                 </div>
                 <div class="space-y-1 text-[11px]">
@@ -325,7 +325,7 @@
               <!-- Suprema Poker Card -->
               <div class="p-3 sm:p-3.5 rounded-xl bg-slate-950/90 border border-orange-500/30 space-y-2 flex flex-col justify-between">
                 <div class="flex items-center justify-between">
-                  <img src="/logos/suprema poker.png" alt="Suprema Poker" class="h-4.5 sm:h-5 w-auto object-contain" />
+                  <img src="/logos/suprema poker.png" alt="Suprema Poker" class="h-3.5 sm:h-4 w-auto object-contain max-h-[14px]" />
                   <span class="text-[9px] font-mono text-orange-400 font-bold uppercase">Suprema</span>
                 </div>
                 <div class="flex justify-between items-center bg-slate-900/90 px-2 py-1 rounded-lg border border-slate-800 text-[11px]">
@@ -337,7 +337,7 @@
               <!-- ClubGG Card -->
               <div class="p-3 sm:p-3.5 rounded-xl bg-slate-950/90 border border-cyan-500/30 space-y-2 flex flex-col justify-between">
                 <div class="flex items-center justify-between">
-                  <img src="/logos/clubgg.jpg" alt="ClubGG" class="h-4.5 sm:h-5 w-auto object-contain rounded" />
+                  <img src="/logos/clubgg.jpg" alt="ClubGG" class="h-3.5 sm:h-4 w-auto object-contain rounded max-h-[14px]" />
                   <span class="text-[9px] font-mono text-cyan-400 font-bold uppercase">ClubGG</span>
                 </div>
                 <div class="flex justify-between items-center bg-slate-900/90 px-2 py-1 rounded-lg border border-slate-800 text-[11px]">
@@ -592,9 +592,17 @@
           </button>
         </div>
 
-        <!-- Bento Showcase Grid Container -->
-        <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-5" id="merch-grid">
-          <!-- Dynamically populated Bento Grid items -->
+        <!-- Bento Showcase & Mobile Carousel Container -->
+        <div class="space-y-3">
+          <!-- Mobile Swipe Hint Badge -->
+          <div class="flex items-center justify-between md:hidden px-1 text-slate-400 font-mono text-[10px] uppercase font-bold tracking-wider">
+            <span class="flex items-center gap-1 text-purple-300"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-pink-400"></i> Desliza horizontalmente</span>
+            <span class="text-slate-500">👈 👉</span>
+          </div>
+
+          <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-6 lg:grid-cols-12 md:gap-5 touch-pan-x no-scrollbar" style="touch-action: pan-y;" id="merch-grid">
+            <!-- Dynamically populated Bento Grid & Carousel items -->
+          </div>
         </div>
 
         <!-- WhatsApp Conversion Bar -->
@@ -951,7 +959,7 @@
         rebuy: '$65',
         addOn: 'NO ADD-ON',
         badge: 'LUNES CLÁSICO',
-        flyerImage: '/los 7/WEEKNIGHT.jpg',
+        flyerImage: '/los 7/WEEKNIGHT.webp',
         accentColor: '#8b5cf6'
       },
       {
@@ -966,7 +974,7 @@
         rebuy: 'NO REBUY',
         addOn: 'NO ADD-ON',
         badge: 'FREEZEOUT',
-        flyerImage: '/los 7/FREEZEOUT.jpg',
+        flyerImage: '/los 7/FREEZEOUT.webp',
         accentColor: '#06b6d4'
       },
       {
@@ -981,7 +989,7 @@
         rebuy: '$100',
         addOn: 'NO ADD-ON',
         badge: 'ALMIGHTY JUEVES',
-        flyerImage: '/los 7/almighty.jpg',
+        flyerImage: '/los 7/almighty.webp',
         accentColor: '#eab308'
       },
       {
@@ -996,7 +1004,7 @@
         rebuy: '$150',
         addOn: 'NO ADD-ON',
         badge: 'SUPERBOUNTY VIERNES',
-        flyerImage: '/los 7/8k superbounty.jpg',
+        flyerImage: '/los 7/8k superbounty.webp',
         accentColor: '#f59e0b'
       },
       {
@@ -1011,7 +1019,7 @@
         rebuy: '$125',
         addOn: 'NO ADD-ON',
         badge: 'SÁBADO VIP',
-        flyerImage: '/los 7/VEGAS VINTAGE.jpg',
+        flyerImage: '/los 7/VEGAS VINTAGE.webp',
         accentColor: '#10b981'
       },
       {
@@ -1026,7 +1034,7 @@
         rebuy: '$50',
         addOn: '1.2X FICHAS INICIALES',
         badge: 'DOMINGO ESTELAR',
-        flyerImage: '/los 7/super sunday.jpg',
+        flyerImage: '/los 7/super sunday.webp',
         accentColor: '#ef4444'
       }
     ];
@@ -1042,7 +1050,7 @@
         buyIn: '$15 - 50.000PTS',
         time: '10:00 PM',
         status: 'confirmado',
-        image: '/calendario/confirmados/PKO.jpg',
+        image: '/calendario/confirmados/PKO.webp',
         clubId: '1743809',
         refId: '3384701',
         badge: 'CONFIRMADO MARTES'
@@ -1056,7 +1064,7 @@
         buyIn: '$10 - 100.000PTS',
         time: '8:00 PM',
         status: 'confirmado',
-        image: '/calendario/confirmados/monseterr.jpg',
+        image: '/calendario/confirmados/monseterr.webp',
         clubId: '1743809',
         refId: '3384701',
         badge: 'CONFIRMADO JUEVES'
@@ -1070,7 +1078,7 @@
         buyIn: '$10',
         time: '5:00 PM',
         status: 'confirmado',
-        image: '/calendario/confirmados/sunday.jpg',
+        image: '/calendario/confirmados/sunday.webp',
         clubId: '1743809',
         refId: '3384701',
         badge: 'ESTELAR DOMINICAL'
@@ -1129,15 +1137,11 @@
         badge: 'MÁS VENDIDO',
         desc: 'Franela de algodón pesado 240g con corte oversize premium y grabado del As de Picas ABC en relieve.',
         sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-        colors: [
-          { name: 'Negro Mate', hex: '#111111' },
-          { name: 'Azul Noche', hex: '#0B132B' },
-          { name: 'Blanco Puro', hex: '#FFFFFF' }
-        ],
+        colors: [],
         images: [
-          '/merch fotos/The As/theas.png',
-          '/merch fotos/The As/camisa de frente.jpg',
-          '/merch fotos/The As/diseno franela.jpg'
+          '/merch fotos/The As/theas.webp',
+          '/merch fotos/The As/camisa de frente.webp',
+          '/merch fotos/The As/diseno franela.webp'
         ],
         isFeatured: true
       },
@@ -1149,14 +1153,11 @@
         badge: 'EDICIÓN LIMITADA',
         desc: 'Diseño exclusivo con orca ABC de ataque en la espalda y logo estampado en el pecho. Algodón peinado ultra suave.',
         sizes: ['S', 'M', 'L', 'XL'],
-        colors: [
-          { name: 'Blanco Puro', hex: '#FFFFFF' },
-          { name: 'Negro Carbón', hex: '#1C1C1C' }
-        ],
+        colors: [],
         images: [
-          '/merch fotos/apex predator/drop a predator frente.jpg',
-          '/merch fotos/apex predator/drop a predator atras.jpg',
-          '/merch fotos/apex predator/apex .png'
+          '/merch fotos/apex predator/drop a predator frente.webp',
+          '/merch fotos/apex predator/drop a predator atras.webp',
+          '/merch fotos/apex predator/apex .webp'
         ],
         isFeatured: true
       },
@@ -1166,12 +1167,16 @@
         category: 'hoodies',
         price: 58.00,
         badge: 'EDICIÓN ESPECIAL',
-        desc: 'Hoodie con capucha doble capa, bolsillo canguro reforzado y gráfico arterial ALL IN ABC en el pecho.',
+        desc: 'Hoodie con capucha doble capa, bolsillo canguro reinforced y gráfico arterial ALL IN ABC en el pecho.',
         sizes: ['S', 'M', 'L', 'XL', 'XXL'],
         colors: [],
         images: [
-          '/merch fotos/all_in/hoodie solo.png',
-          '/merch fotos/all_in/hoodie.jpg',
+          '/merch fotos/all_in/hoodie solo.webp',
+          '/merch fotos/all_in/hoodie.webp',
+          '/merch fotos/all_in/hoodie 2.webp'
+        ],
+        isFeatured: true
+      },          '/merch fotos/all_in/hoodie.jpg',
           '/merch fotos/all_in/hoodie 2.jpg'
         ],
         isFeatured: true
@@ -1706,7 +1711,7 @@
       if (featured) {
         const heroImg = featured.images && featured.images.length > 0 ? featured.images[0] : null;
         html += `
-          <div class="col-span-12 lg:col-span-6 glass-card rounded-3xl border border-purple-500/40 relative overflow-hidden group flex flex-col justify-between p-6 sm:p-8 min-h-[440px]">
+          <div class="col-span-12 lg:col-span-6 shrink-0 w-[88vw] sm:w-[340px] snap-center md:w-auto md:shrink glass-card rounded-3xl border border-purple-500/40 relative overflow-hidden group flex flex-col justify-between p-5 sm:p-8 min-h-[420px] sm:min-h-[440px]">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10 pointer-events-none"></div>
 
             <div class="relative z-20 flex justify-between items-start">
@@ -1781,7 +1786,7 @@
     function renderSingleMerchCard(m) {
       const cardImg = m.images && m.images.length > 0 ? m.images[0] : null;
       return `
-        <div class="col-span-6 lg:col-span-3 glass-card p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-purple-500/20 flex flex-col justify-between space-y-3 sm:space-y-4 group">
+        <div class="col-span-6 lg:col-span-3 shrink-0 w-[240px] sm:w-[270px] snap-center md:w-auto md:shrink glass-card p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-purple-500/20 flex flex-col justify-between space-y-3 sm:space-y-4 group">
           <div class="flex justify-between items-start">
             <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold font-mono uppercase border border-purple-500/30">
               ${m.badge}
