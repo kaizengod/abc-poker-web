@@ -592,17 +592,9 @@
           </button>
         </div>
 
-        <!-- Bento Showcase & Mobile Carousel Container -->
-        <div class="space-y-3">
-          <!-- Mobile Swipe Hint Badge -->
-          <div class="flex items-center justify-between md:hidden px-1 text-slate-400 font-mono text-[10px] uppercase font-bold tracking-wider">
-            <span class="flex items-center gap-1 text-purple-300"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-pink-400"></i> Desliza horizontalmente</span>
-            <span class="text-slate-500">👈 👉</span>
-          </div>
-
-          <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-6 lg:grid-cols-12 md:gap-5 touch-pan-x no-scrollbar" style="touch-action: pan-y;" id="merch-grid">
-            <!-- Dynamically populated Bento Grid & Carousel items -->
-          </div>
+        <!-- Bento Showcase Grid Container -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-12 gap-5" id="merch-grid">
+          <!-- Dynamically populated Bento Grid items -->
         </div>
 
         <!-- WhatsApp Conversion Bar -->
@@ -1465,7 +1457,9 @@
           
           const hRatio = canvas.width / img.width;
           const vRatio = canvas.height / img.height;
-          const ratio = Math.max(hRatio, vRatio);
+          const isMobile = window.innerWidth < 768;
+          const maxRatio = Math.max(hRatio, vRatio);
+          const ratio = isMobile ? (maxRatio * 0.70) : maxRatio;
 
           const isDesktop = window.innerWidth >= 1024;
           const rightOffset = isDesktop ? (canvas.width * 0.18) : 0;
@@ -1729,7 +1723,7 @@
       if (featured) {
         const heroImg = featured.images && featured.images.length > 0 ? featured.images[0] : null;
         html += `
-          <div class="col-span-12 lg:col-span-6 shrink-0 w-[88vw] sm:w-[340px] snap-center md:w-auto md:shrink glass-card rounded-3xl border border-purple-500/40 relative overflow-hidden group flex flex-col justify-between p-5 sm:p-8 min-h-[420px] sm:min-h-[440px]">
+          <div class="col-span-12 lg:col-span-6 glass-card rounded-3xl border border-purple-500/40 relative overflow-hidden group flex flex-col justify-between p-5 sm:p-8 min-h-[420px] sm:min-h-[440px]">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10 pointer-events-none"></div>
 
             <div class="relative z-20 flex justify-between items-start">
@@ -1804,7 +1798,7 @@
     function renderSingleMerchCard(m) {
       const cardImg = m.images && m.images.length > 0 ? m.images[0] : null;
       return `
-        <div class="col-span-6 lg:col-span-3 shrink-0 w-[240px] sm:w-[270px] snap-center md:w-auto md:shrink glass-card p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-purple-500/20 flex flex-col justify-between space-y-3 sm:space-y-4 group">
+        <div class="col-span-12 sm:col-span-6 lg:col-span-3 glass-card p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-purple-500/20 flex flex-col justify-between space-y-3 sm:space-y-4 group">
           <div class="flex justify-between items-start">
             <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold font-mono uppercase border border-purple-500/30">
               ${m.badge}
