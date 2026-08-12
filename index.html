@@ -1,0 +1,1972 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ABC POKER - Sitio Oficial | La Casa de Poker Donde Nacen los Campeones</title>
+
+  <!-- PWA & Mobile App Meta Tags -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS & Lucide Icons & Canvas Confetti -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: #020617;
+      color: #f8fafc;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-overflow-scrolling: touch;
+      touch-action: manipulation;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Standard Glassmorphism Card */
+    .glass-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      will-change: transform, box-shadow;
+    }
+    .glass-card:hover, .glass-card:active {
+      transform: translateY(-5px) scale(1.018);
+      border-color: rgba(56, 189, 248, 0.6) !important;
+      box-shadow: 0 25px 60px -10px rgba(0, 180, 255, 0.35) !important;
+      background: rgba(15, 23, 42, 0.8) !important;
+    }
+
+    /* Ultra Translucent Beneficios Glassmorphism Cards */
+    .glass-card-translucent {
+      background: rgba(15, 23, 42, 0.35) !important;
+      backdrop-filter: blur(16px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+      border: 1px solid rgba(56, 189, 248, 0.25) !important;
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5) !important;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    }
+    .glass-card-translucent:hover, .glass-card-translucent:active {
+      transform: translateY(-6px) scale(1.02) !important;
+      border-color: rgba(56, 189, 248, 0.6) !important;
+      box-shadow: 0 25px 60px -10px rgba(0, 180, 255, 0.35) !important;
+      background: rgba(15, 23, 42, 0.55) !important;
+    }
+
+    /* Ultra Translucent Flyer 3D Coverflow Cards allowing background light bleed */
+    .flyer-card-translucent {
+      background: rgba(15, 23, 42, 0.38) !important;
+      backdrop-filter: blur(16px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+      border: 1px solid rgba(56, 189, 248, 0.35) !important;
+      box-shadow: 0 20px 50px -10px rgba(0, 140, 255, 0.3), inset 0 0 20px rgba(56, 189, 248, 0.15) !important;
+    }
+
+    /* Persistent Smooth 3D Coverflow Flyer Card Transitions */
+    .flyer-3d-card {
+      transition: transform 0.55s cubic-bezier(0.34, 1.25, 0.64, 1), opacity 0.45s ease, filter 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+      will-change: transform, opacity;
+      transform-style: preserve-3d;
+    }
+
+    .interactive-btn {
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .interactive-btn:hover, .interactive-btn:active {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+      border: 2px solid #020617;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+
+    /* Dynamic 3D Orca Canvas Scroll Background with Hardware Acceleration */
+    #orca-scroll-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.95;
+      filter: contrast(1.15) brightness(1.05);
+      transition: filter 0.3s ease, opacity 0.3s ease;
+      transform: translateZ(0);
+      will-change: transform, filter, opacity;
+    }
+
+    .icon-badge {
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Tab Selected state */
+    .tab-btn.active {
+      background: linear-gradient(135deg, #2563eb, #06b6d4) !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.4) !important;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen selection:bg-cyan-500 selection:text-slate-950">
+
+  <!-- 3D Orca Scroll Canvas Animation (Hardware Accelerated Instant Sync) -->
+  <canvas id="orca-scroll-canvas"></canvas>
+
+  <!-- Ambient Light Orbs -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-gradient-to-b from-blue-600/20 via-cyan-500/10 to-transparent blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed top-1/3 left-10 w-96 h-96 bg-blue-700/15 rounded-full blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed bottom-10 right-10 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl pointer-events-none z-0"></div>
+
+  <!-- App Main Content Layer -->
+  <div class="relative z-10 flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 bg-slate-950/85 backdrop-blur-xl border-b border-blue-500/20 shadow-[0_4px_30px_rgba(0,50,150,0.3)]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        
+        <!-- Logo next to Navigation Bar -->
+        <a href="#hero" onclick="scrollToSection('hero')" class="flex items-center gap-3 group text-left">
+          <img src="/ABC LOGO.png" alt="ABC POKER" class="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_4px_16px_rgba(0,180,255,0.5)] group-hover:scale-105 transition-transform" />
+          <div class="flex flex-col">
+            <span class="text-lg sm:text-xl font-black tracking-wider bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent group-hover:from-cyan-300 group-hover:to-amber-300 transition-colors font-display">
+              ABC POKER
+            </span>
+            <span class="text-[10px] font-bold text-amber-400 font-mono tracking-widest uppercase">
+              SITIO OFICIAL
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Items -->
+        <nav class="hidden md:flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-full border border-blue-500/20 backdrop-blur-md">
+          <button onclick="scrollToSection('beneficios')" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Beneficios
+          </button>
+          <button onclick="scrollToSection('torneos')" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+            <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i> Torneos
+          </button>
+          <button onclick="scrollToSection('calendario')" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+            <i data-lucide="calendar" class="w-4 h-4 text-cyan-400"></i> Calendario
+          </button>
+          <button onclick="scrollToSection('ganadores')" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+            <i data-lucide="award" class="w-4 h-4 text-purple-400"></i> Ganadores
+          </button>
+          <button onclick="scrollToSection('merch')" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-pink-400"></i> Merch
+          </button>
+        </nav>
+
+        <!-- CTA Buttons & Mobile Menu Toggle -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button onclick="openModal('platforms-modal')" class="interactive-btn hidden sm:flex items-center gap-2.5 px-4 py-2 rounded-xl text-xs font-bold text-cyan-300 bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400">
+            <img src="/logos/pokerbros.png" class="h-6 w-auto object-contain" alt="PokerBros" />
+            <img src="/logos/suprema poker.png" class="h-5 w-auto object-contain" alt="Suprema" />
+            <img src="/logos/clubgg.jpg" class="h-5 w-auto object-contain rounded" alt="ClubGG" />
+            <span class="ml-1 text-white font-mono font-bold">IDs Oficiales</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-cyan-400"></i>
+          </button>
+
+          <button onclick="openWhatsApp('¡Hola ABC Poker! Deseo unirme al club o solicitar información de fichas.', 'general')" class="interactive-btn flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+            <i data-lucide="message-circle" class="w-4 h-4 fill-slate-950"></i>
+            <span class="hidden xs:inline">WhatsApp</span>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button id="mobile-menu-toggle-btn" onclick="toggleMobileMenu()" class="md:hidden text-slate-300 hover:text-white p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 focus:outline-none" aria-label="Abrir menú de navegación">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu-drawer" class="fixed inset-x-0 top-[65px] bg-slate-950/95 backdrop-blur-2xl border-b border-cyan-500/30 p-5 space-y-4 z-40 hidden transition-all duration-300 shadow-2xl md:hidden">
+        <nav class="flex flex-col gap-2">
+          <button onclick="scrollToSection('beneficios'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Beneficios
+          </button>
+          <button onclick="scrollToSection('torneos'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
+            <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i> Torneos
+          </button>
+          <button onclick="scrollToSection('calendario'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
+            <i data-lucide="calendar" class="w-4 h-4 text-cyan-400"></i> Calendario
+          </button>
+          <button onclick="scrollToSection('ganadores'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
+            <i data-lucide="award" class="w-4 h-4 text-purple-400"></i> Ganadores & Rankings
+          </button>
+          <button onclick="scrollToSection('merch'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-pink-400"></i> Merch
+          </button>
+        </nav>
+
+        <div class="pt-2 flex flex-col gap-2">
+          <button onclick="openModal('platforms-modal'); toggleMobileMenu()" class="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-xs font-bold text-cyan-300 bg-slate-900 border border-cyan-500/40">
+            <img src="/logos/pokerbros.png" class="h-5 w-auto object-contain" alt="PokerBros" />
+            <img src="/logos/suprema poker.png" class="h-4 w-auto object-contain" alt="Suprema" />
+            <img src="/logos/clubgg.jpg" class="h-4 w-auto object-contain rounded" alt="ClubGG" />
+            <span class="ml-1 text-white font-mono font-bold">IDs Oficiales</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: HERO SECTION -->
+    <section id="hero" class="relative pt-32 lg:pt-40 pb-28 min-h-[88vh] flex items-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        
+        <!-- Left Aligned Frosted Panel for Maximum Readability -->
+        <div class="max-w-xl lg:max-w-2xl text-left flex flex-col items-start bg-slate-950/40 backdrop-blur-md p-6 sm:p-10 rounded-3xl border border-cyan-500/20 shadow-2xl">
+          
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-950 via-slate-900 to-cyan-950 border border-cyan-500/40 shadow-[0_0_20px_rgba(0,180,255,0.3)] mb-6 backdrop-blur-md">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-400 animate-pulse"></i>
+            <span class="text-xs font-black tracking-widest text-cyan-300 uppercase">
+              CLUB OFICIAL ABC POKER
+            </span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-none mb-4 font-display">
+            BIENVENIDO <br />
+            <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(56,189,248,0.5)]">
+              AL CLUB
+            </span>
+          </h1>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-amber-400/90 tracking-wide mb-6 uppercase flex items-center gap-2 font-display">
+            <span class="w-8 h-1 bg-amber-400 rounded-full inline-block"></span>
+            LA CASA DE POKER DONDE NACEN LOS CAMPEONES
+          </h2>
+
+          <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl mb-8 drop-shadow-md">
+            En <strong>ABC POKER</strong> vives la experiencia de póker más completa y profesional de la región. Diseñamos el espacio perfecto con torneos garantizados semanales, premios inmediatos y soporte exclusivo 24/7.
+          </p>
+
+          <!-- 3-Platform Credentials Box -->
+          <div class="w-full p-5 rounded-2xl bg-slate-900/90 border border-cyan-500/30 backdrop-blur-md shadow-xl mb-8 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase flex items-center gap-2">
+                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> PLATAFORMAS & IDS OFICIALES ABC
+              </span>
+              <button onclick="openModal('platforms-modal')" class="text-[11px] text-amber-400 hover:underline font-mono font-bold flex items-center gap-1">
+                <span>Ver Infografía</span>
+                <i data-lucide="external-link" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <!-- PokerBros Card -->
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-amber-500/30 space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <img src="/logos/pokerbros.png" alt="PokerBros" class="h-6 w-auto object-contain" />
+                  <span class="text-[9px] font-mono text-amber-400 font-bold uppercase">PokerBros</span>
+                </div>
+                <div class="space-y-1.5 text-[11px]">
+                  <div class="flex justify-between items-center bg-slate-900/80 px-2.5 py-1 rounded-lg border border-slate-800">
+                    <span class="text-slate-400 text-[10px]">Privado: <strong class="text-white font-mono font-bold">1743809</strong></span>
+                    <button onclick="copyToClipboard('1743809')" class="text-cyan-300 p-0.5 hover:text-white" title="Copiar ID Privado"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
+                  </div>
+                  <div class="flex justify-between items-center bg-slate-900/80 px-2.5 py-1 rounded-lg border border-slate-800">
+                    <span class="text-slate-400 text-[10px]">Unión: <strong class="text-white font-mono font-bold">1758073</strong></span>
+                    <button onclick="copyToClipboard('1758073')" class="text-cyan-300 p-0.5 hover:text-white" title="Copiar ID Unión"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Suprema Poker Card -->
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-orange-500/30 space-y-2.5 flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                  <img src="/logos/suprema poker.png" alt="Suprema Poker" class="h-5 w-auto object-contain" />
+                  <span class="text-[9px] font-mono text-orange-400 font-bold uppercase">Suprema</span>
+                </div>
+                <div class="flex justify-between items-center bg-slate-900/80 px-2.5 py-1.5 rounded-lg border border-slate-800 text-[11px]">
+                  <span class="text-slate-400 text-[10px]">Club ID: <strong class="text-white font-mono text-sm font-bold">62546</strong></span>
+                  <button onclick="copyToClipboard('62546')" class="text-orange-400 p-0.5 hover:text-white" title="Copiar Suprema ID"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
+                </div>
+              </div>
+
+              <!-- ClubGG Card -->
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-cyan-500/30 space-y-2.5 flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                  <img src="/logos/clubgg.jpg" alt="ClubGG" class="h-5 w-auto object-contain rounded" />
+                  <span class="text-[9px] font-mono text-cyan-400 font-bold uppercase">ClubGG</span>
+                </div>
+                <div class="flex justify-between items-center bg-slate-900/80 px-2.5 py-1.5 rounded-lg border border-slate-800 text-[11px]">
+                  <span class="text-slate-400 text-[10px]">Club ID: <strong class="text-white font-mono text-sm font-bold">589574</strong></span>
+                  <button onclick="copyToClipboard('589574')" class="text-cyan-300 p-0.5 hover:text-white" title="Copiar ClubGG ID"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap gap-4 w-full sm:w-auto">
+            <button onclick="openWhatsApp('¡Hola ABC Poker! Quiero ingresar a sus plataformas de póker.', 'general')" class="interactive-btn flex-1 sm:flex-none flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-wider text-slate-950 bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 shadow-[0_0_25px_rgba(6,182,212,0.4)]">
+              <i data-lucide="message-circle" class="w-5 h-5 fill-slate-950"></i>
+              <span>Ingresar al Club por WhatsApp</span>
+            </button>
+
+            <button onclick="openModal('platforms-modal')" class="interactive-btn flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-bold text-sm text-cyan-300 bg-slate-900 border border-cyan-500/30 hover:bg-slate-800">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              <span>Instrucciones de Registro</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: BENEFICIOS DE NUESTRO CLUB -->
+    <section id="beneficios" class="py-24 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <span class="text-xs font-bold text-cyan-400 font-mono tracking-widest uppercase">¿POR QUÉ ELEGIR ABC POKER?</span>
+          <h2 class="text-3xl sm:text-5xl font-black text-white font-display">BENEFICIOS DE NUESTRO CLUB</h2>
+          <p class="text-sm text-slate-300">Garantizamos una experiencia de póker transparente, segura y altamente competitiva.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="glass-card-translucent p-7 rounded-3xl space-y-4 cursor-pointer">
+            <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 icon-badge">
+              <i data-lucide="shield-check" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-cyan-500/25 text-cyan-300 text-[10px] font-bold font-mono border border-cyan-500/40 uppercase">100% GARANTIZADO</span>
+            <h3 class="text-xl font-extrabold text-white">Juego Seguro</h3>
+            <p class="text-xs text-slate-200 leading-relaxed">Honestidad y transparencia en cada una de las manos y mesas activas.</p>
+          </div>
+
+          <div class="glass-card-translucent p-7 rounded-3xl space-y-4 cursor-pointer">
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 icon-badge">
+              <i data-lucide="award" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-amber-500/25 text-amber-300 text-[10px] font-bold font-mono border border-amber-500/40 uppercase">PAGOS INMEDIATOS</span>
+            <h3 class="text-xl font-extrabold text-white">Premios Asegurados</h3>
+            <p class="text-xs text-slate-200 leading-relaxed">Pagos 100% reales para que tu talento y esfuerzo siempre tengan recompensa.</p>
+          </div>
+
+          <div class="glass-card-translucent p-7 rounded-3xl space-y-4 cursor-pointer">
+            <div class="w-14 h-14 rounded-2xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 icon-badge">
+              <i data-lucide="crown" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-purple-500/25 text-purple-300 text-[10px] font-bold font-mono border border-purple-500/40 uppercase">NIVEL ALTO</span>
+            <h3 class="text-xl font-extrabold text-white">Ambiente Profesional</h3>
+            <p class="text-xs text-slate-200 leading-relaxed">Comodidad, respeto y el estándar de juego más exigente de la región.</p>
+          </div>
+
+          <div class="glass-card-translucent p-7 rounded-3xl space-y-4 cursor-pointer">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 icon-badge">
+              <i data-lucide="zap" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/25 text-emerald-300 text-[10px] font-bold font-mono border border-emerald-500/40 uppercase">TORNEOS DIARIOS</span>
+            <h3 class="text-xl font-extrabold text-white">Acción Constante</h3>
+            <p class="text-xs text-slate-200 leading-relaxed">Mesas activas las 24 horas y torneos estelares cada semana.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TORNEOS DESTACADOS (PERSISTENT SILKY SMOOTH 3D COVERFLOW CAROUSEL) -->
+    <section id="torneos" class="py-20 relative overflow-hidden">
+      <!-- Background Sparks and Embers Video -->
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-65 mix-blend-screen filter brightness-125 contrast-110">
+          <source src="https://res.cloudinary.com/se3scrvv/video/upload/v1786412960/Sparks_and_embers_rise_upwards_202608102138_qshv55.mp4" type="video/mp4" />
+        </video>
+        <!-- Gradient Overlay for smooth top & bottom edge blending -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/40 to-slate-950"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <span class="text-xs font-bold text-amber-400 font-mono tracking-widest uppercase">FLYERS OFICIALES & GARANTIZADOS</span>
+            <h2 class="text-3xl sm:text-5xl font-black text-white font-display">TORNEOS DESTACADOS</h2>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="openModal('pokerbros-modal')" class="interactive-btn flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-cyan-300 bg-slate-900/80 backdrop-blur-md border border-cyan-500/30">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              <span>Ver cómo registrarse</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Coverflow Carousel Stage with Touch Swipe Support -->
+        <div class="relative py-6">
+          <!-- Controls -->
+          <button onclick="prevTournamentFlyer()" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-slate-950/90 border border-cyan-500/40 text-cyan-300 hover:text-white hover:bg-cyan-600/40 backdrop-blur-xl shadow-2xl flex items-center justify-center interactive-btn" title="Anterior">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+          </button>
+
+          <button onclick="nextTournamentFlyer()" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-slate-950/90 border border-cyan-500/40 text-cyan-300 hover:text-white hover:bg-cyan-600/40 backdrop-blur-xl shadow-2xl flex items-center justify-center interactive-btn" title="Siguiente">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+          </button>
+
+          <!-- Carousel Stage -->
+          <div class="flex items-center justify-center min-h-[520px] sm:min-h-[580px] relative max-w-6xl mx-auto overflow-hidden px-2 touch-pan-x" id="tournaments-carousel-stage">
+            <!-- Rendered once into persistent DOM elements -->
+          </div>
+
+          <!-- Pagination Dots -->
+          <div class="flex justify-center items-center gap-2 mt-6" id="carousel-dots-container">
+            <!-- Loaded dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: CALENDARIO DE TORNEOS (3 WEEKLY CONFIRMED TOURNAMENTS WITH COPYABLE ID) -->
+    <section id="calendario" class="py-20 relative overflow-hidden">
+      <!-- Background 'fondo torneos.jpg' Image & Ambient Blue Glow Overlay -->
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <img src="/fondo torneos.jpg" alt="Fondo Calendario" class="w-full h-full object-cover opacity-90 filter brightness-110 contrast-110 scale-105" />
+        <!-- Gradient Overlay for smooth edge blending -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/30 to-slate-950"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10">
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="text-xs font-bold text-cyan-400 font-mono tracking-widest uppercase">PROGRAMACIÓN SEMANAL OFICIAL</span>
+          <h2 class="text-3xl sm:text-5xl font-black text-white font-display">TORNEOS CONFIRMADOS</h2>
+          <p class="text-sm text-slate-300">Selecciona el día de la semana para consultar los torneos confirmados e ingresar directamente con las credenciales oficiales.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap justify-center gap-2" id="calendar-tabs">
+          <button onclick="filterCalendar('all')" class="tab-btn active px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 backdrop-blur-md border border-slate-700 text-slate-300">
+            Todos los Torneos Confirmados
+          </button>
+          <button onclick="filterCalendar('Lunes')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 backdrop-blur-md border border-slate-700 text-slate-300">Lunes</button>
+          <button onclick="filterCalendar('Martes')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 backdrop-blur-md border border-slate-700 text-slate-300">Martes</button>
+          <button onclick="filterCalendar('Miércoles')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 backdrop-blur-md border border-slate-700 text-slate-300">Miércoles</button>
+          <button onclick="filterCalendar('Jueves')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 backdrop-blur-md border border-slate-700 text-slate-300">Jueves</button>
+          <button onclick="filterCalendar('Viernes')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 backdrop-blur-md border border-slate-700 text-slate-300">Viernes</button>
+          <button onclick="filterCalendar('Sábado')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 backdrop-blur-md border border-slate-700 text-slate-300">Sábado</button>
+          <button onclick="filterCalendar('Domingo')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 backdrop-blur-md border border-slate-700 text-slate-300">Domingo</button>
+        </div>
+
+        <!-- Confirmed Events Schedule List Translucent Container -->
+        <div class="glass-card-translucent rounded-3xl overflow-hidden divide-y divide-slate-800/60 shadow-2xl backdrop-blur-xl border border-cyan-500/30" id="calendar-list">
+          <!-- Populated dynamically with 3 confirmed tournaments -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: GANADORES & RANKING SECTION -->
+    <section id="ganadores" class="py-20 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold text-amber-400 font-mono tracking-widest uppercase">HALL OF FAME & RANKING</span>
+            <h2 class="text-3xl sm:text-5xl font-black text-white font-display">CAMPEONES Y LÍDERES</h2>
+          </div>
+
+          <button onclick="triggerConfettiCelebration()" class="interactive-btn px-5 py-2.5 rounded-xl text-xs font-black uppercase text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-300 shadow-[0_0_20px_rgba(245,158,11,0.4)] flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4 fill-slate-950"></i>
+            <span>¡Celebrar Campeones! 🎉</span>
+          </button>
+        </div>
+
+        <!-- Recent Winners Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="winners-cards">
+          <!-- Loaded dynamically -->
+        </div>
+
+        <!-- Leaderboard Ranking Table -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-5 border border-cyan-500/30">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center justify-center font-bold">
+                🏆
+              </div>
+              <div>
+                <h3 class="text-xl font-black text-white font-display">RANKING OFICIAL ABC POKER</h3>
+                <span class="text-xs text-slate-400 font-mono">Clasificación General Actualizada</span>
+              </div>
+            </div>
+
+            <button onclick="openModal('ranking-poster-modal')" class="interactive-btn px-4 py-2 rounded-xl text-xs font-bold text-cyan-300 bg-slate-900 border border-cyan-500/30 flex items-center gap-2">
+              <i data-lucide="image" class="w-4 h-4 text-cyan-400"></i>
+              <span>Ver Afiche de Ranking Oficial</span>
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-950/90 text-slate-400 uppercase font-mono text-[11px] border-b border-slate-800">
+                <tr>
+                  <th class="p-3.5 pl-4">#</th>
+                  <th class="p-3.5">Jugador</th>
+                  <th class="p-3.5 font-mono">Pts Torneos</th>
+                  <th class="p-3.5 font-mono">Pts Extra</th>
+                  <th class="p-3.5 pr-4 text-right font-mono">Total Puntos</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60 font-medium" id="ranking-tbody">
+                <!-- Loaded dynamically from RANKINGABCC.jpg data -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: MERCH STORE SECTION (BENTO GRID SHOWCASE) -->
+    <section id="merch" class="py-20 bg-slate-950/90 relative overflow-hidden">
+      <!-- Ambient Lighting Overlay -->
+      <div class="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-purple-900/20 via-slate-950/60 to-slate-950"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
+        
+        <!-- Header Section -->
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30 uppercase tracking-widest">
+            DROP EXCLUSIVO 01 • TIENDA ABC
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black text-white font-display">MERCHANDISING EXCLUSIVO</h2>
+          <p class="text-sm text-slate-300">Ediciones limitadas de franelas, gorras y hoodies con pedidos directos a WhatsApp.</p>
+        </div>
+
+        <!-- Category Switcher Pills -->
+        <div class="flex flex-wrap justify-center gap-2" id="merch-categories">
+          <button onclick="filterMerch('todos')" class="merch-tab-btn active px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 border border-purple-500/40 text-white shadow-lg">
+            Todos (<span id="count-todos">6</span>)
+          </button>
+          <button onclick="filterMerch('franelas')" class="merch-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white">
+            Franelas (<span id="count-franelas">2</span>)
+          </button>
+          <button onclick="filterMerch('gorras')" class="merch-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white">
+            Gorras (<span id="count-gorras">2</span>)
+          </button>
+          <button onclick="filterMerch('hoodies')" class="merch-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white">
+            Hoodies (<span id="count-hoodies">2</span>)
+          </button>
+        </div>
+
+        <!-- Bento Showcase Grid Container -->
+        <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-5" id="merch-grid">
+          <!-- Dynamically populated Bento Grid items -->
+        </div>
+
+        <!-- WhatsApp Conversion Bar -->
+        <div class="rounded-3xl bg-slate-900/80 border border-purple-500/30 p-6 sm:p-8 shadow-2xl backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0 shadow-lg">
+              <i data-lucide="message-circle" class="w-7 h-7"></i>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold text-white flex items-center gap-2">
+                <span>Atención Personalizada vía WhatsApp (+593 96 809 2949)</span>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+              </h4>
+              <p class="text-xs text-slate-300 mt-1 max-w-xl">
+                Selecciona tu prenda favorita, personaliza talla y color, y finaliza tu pedido de forma directa y segura.
+              </p>
+            </div>
+          </div>
+
+          <button onclick="openWhatsApp('¡Hola! Quisiera información general sobre el Merch Exclusivo de ABC Poker.', 'merch')" class="interactive-btn shrink-0 px-6 py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 shadow-xl flex items-center gap-2">
+            <i data-lucide="message-circle" class="w-4 h-4 fill-slate-950"></i>
+            <span>Consultar por WhatsApp</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-blue-500/20 py-12 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <img src="/ABC LOGO.png" alt="ABC POKER" class="h-8 w-auto object-contain" />
+            <h3 class="text-lg font-black text-white font-display">ABC POKER</h3>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            El club oficial de póker en PokerBros con la comunidad más sólida y transparente.
+          </p>
+          <div class="text-[11px] text-cyan-400 font-mono">
+            ID PokerBros: <strong>1758073</strong>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Navegación</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="#hero" onclick="scrollToSection('hero')" class="hover:text-cyan-400">Inicio</a></li>
+            <li><a href="#beneficios" onclick="scrollToSection('beneficios')" class="hover:text-cyan-400">Beneficios</a></li>
+            <li><a href="#torneos" onclick="scrollToSection('torneos')" class="hover:text-cyan-400">Torneos</a></li>
+            <li><a href="#calendario" onclick="scrollToSection('calendario')" class="hover:text-cyan-400">Calendario</a></li>
+            <li><a href="#ganadores" onclick="scrollToSection('ganadores')" class="hover:text-cyan-400">Hall of Fame</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Redes & Contacto</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><button onclick="openWhatsApp('¡Hola ABC Poker! Quisiera información general del club.', 'general')" class="hover:text-emerald-400">WhatsApp Oficial (+593 96 809 2949)</button></li>
+            <li><a href="https://www.instagram.com/abcpokerclub/" target="_blank" class="hover:text-pink-400 font-bold flex items-center gap-1.5"><i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-400"></i> Instagram (@abcpokerclub)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Soporte</h4>
+          <p class="text-xs text-slate-400 mb-3">Atención personalizada y recarga de fichas 24/7.</p>
+          <button onclick="openWhatsApp('¡Hola ABC Poker! Necesito asistencia o soporte.', 'general')" class="interactive-btn px-4 py-2 rounded-xl text-xs font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30">
+            Contactar Agente 24/7
+          </button>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-900 text-center text-[11px] text-slate-500">
+        © 2026 ABC POKER CLUB. Todos los derechos reservados.
+      </div>
+    </footer>
+
+    <!-- MOBILE FLOATING BOTTOM DOCK -->
+    <nav class="md:hidden fixed bottom-3 inset-x-3 bg-slate-950/90 backdrop-blur-2xl border border-blue-500/30 rounded-2xl p-1.5 shadow-2xl z-40 flex items-center justify-around">
+      <button onclick="scrollToSection('hero')" class="flex flex-col items-center gap-1 p-2 rounded-xl text-[10px] text-slate-300 active:scale-95">
+        <i data-lucide="home" class="w-4 h-4 text-cyan-400"></i>
+        <span>Inicio</span>
+      </button>
+      <button onclick="scrollToSection('beneficios')" class="flex flex-col items-center gap-1 p-2 rounded-xl text-[10px] text-slate-300 active:scale-95">
+        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+        <span>Beneficios</span>
+      </button>
+      <button onclick="scrollToSection('torneos')" class="flex flex-col items-center gap-1 p-2 rounded-xl text-[10px] text-slate-300 active:scale-95">
+        <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+        <span>Torneos</span>
+      </button>
+      <button onclick="scrollToSection('ganadores')" class="flex flex-col items-center gap-1 p-2 rounded-xl text-[10px] text-slate-300 active:scale-95">
+        <i data-lucide="award" class="w-4 h-4 text-purple-400"></i>
+        <span>Líderes</span>
+      </button>
+      <button onclick="openWhatsApp('¡Hola ABC Poker! Quiero registrarme.')" class="flex flex-col items-center gap-1 p-2 rounded-xl text-[10px] font-bold text-emerald-400 active:scale-95">
+        <i data-lucide="message-circle" class="w-4 h-4"></i>
+        <span>WhatsApp</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- MODALS -->
+  <!-- PokerBros & Multi-Platform Instructions Modal -->
+  <div id="pokerbros-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="glass-card w-full max-w-lg rounded-3xl p-6 relative border border-cyan-500/30 space-y-4 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal('pokerbros-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
+        <div class="w-10 h-10 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-black">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-black text-white font-display">Instrucciones de Registro ABC</h3>
+          <p class="text-xs text-slate-400">Sigue estos sencillos pasos para ingresar a nuestras plataformas</p>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+          <span class="font-bold text-cyan-400 block">Paso 1: Descarga tu App Favorita</span>
+          <p class="text-slate-300">Descarga e instala PokerBros, Suprema Poker o ClubGG desde la App Store (iOS) o Google Play Store (Android).</p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2.5">
+          <span class="font-bold text-amber-400 block">Paso 2: Solicita unirte con las Credenciales</span>
+
+          <!-- PokerBros -->
+          <div class="p-2.5 rounded-xl bg-slate-950 border border-amber-500/30 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-amber-400 font-extrabold uppercase font-mono">App PokerBros</span>
+            </div>
+            <div class="flex items-center justify-between bg-slate-900/90 px-2.5 py-1 rounded-lg">
+              <span class="text-[11px] text-slate-300">ID Privado: <strong class="text-white font-mono">1743809</strong></span>
+              <button onclick="copyToClipboard('1743809')" class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold">Copiar</button>
+            </div>
+            <div class="flex items-center justify-between bg-slate-900/90 px-2.5 py-1 rounded-lg">
+              <span class="text-[11px] text-slate-300">ID Unión: <strong class="text-white font-mono">1758073</strong></span>
+              <button onclick="copyToClipboard('1758073')" class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold">Copiar</button>
+            </div>
+          </div>
+
+          <!-- Suprema & ClubGG -->
+          <div class="grid grid-cols-2 gap-2">
+            <div class="p-2.5 rounded-xl bg-slate-950 border border-orange-500/30 space-y-1">
+              <span class="text-[10px] text-orange-400 font-extrabold uppercase font-mono block">Suprema Poker</span>
+              <div class="flex items-center justify-between pt-1">
+                <span class="text-white font-mono font-bold text-xs">62546</span>
+                <button onclick="copyToClipboard('62546')" class="px-2 py-0.5 rounded bg-orange-500/20 text-orange-300 text-[10px] font-bold">Copiar</button>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-slate-950 border border-cyan-500/30 space-y-1">
+              <span class="text-[10px] text-cyan-400 font-extrabold uppercase font-mono block">ClubGG</span>
+              <div class="flex items-center justify-between pt-1">
+                <span class="text-white font-mono font-bold text-xs">589574</span>
+                <button onclick="copyToClipboard('589574')" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold">Copiar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+          <span class="font-bold text-emerald-400 block">Paso 3: Aprobación por WhatsApp</span>
+          <p class="text-slate-300">Escribe a nuestro soporte por WhatsApp para la aprobación inmediata de tu solicitud y carga de fichas.</p>
+        </div>
+      </div>
+
+      <button onclick="openWhatsApp('¡Hola ABC Poker! Ya envié mi solicitud en la app. Quisiera confirmar mi registro.', 'general')" class="interactive-btn w-full py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 shadow-xl">
+        Notificar por WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Tournament Official Flyer Full Details Modal -->
+  <div id="flyer-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 hidden">
+    <div class="glass-card w-full max-w-lg rounded-3xl p-6 relative border border-cyan-500/40 space-y-4 max-h-[92vh] overflow-y-auto">
+      <button onclick="closeModal('flyer-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-full bg-slate-900/80">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="space-y-1 pr-8">
+        <span id="modal-badge" class="inline-block px-3 py-1 rounded-full text-xs font-extrabold font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">BOUNTY</span>
+        <h3 id="modal-title" class="text-2xl font-black text-white font-display">8K SUPERBOUNTY</h3>
+        <p id="modal-subtitle" class="text-xs text-slate-300">Flyer Oficial del Torneo</p>
+      </div>
+
+      <!-- High-Res Flyer Poster Image -->
+      <div class="relative rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl max-h-[55vh] bg-slate-950 flex items-center justify-center">
+        <img id="modal-flyer-img" src="" alt="Flyer Oficial" class="w-full h-full object-contain max-h-[55vh]" />
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 text-xs">
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-slate-400 block text-[10px]">Garantizado</span>
+          <strong id="modal-gtd" class="text-amber-400 font-bold font-mono text-sm">$8,000 GTD</strong>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-slate-400 block text-[10px]">Buy-in</span>
+          <strong id="modal-buyin" class="text-cyan-400 font-bold text-xs">$150 / 40.000PTS</strong>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-slate-400 block text-[10px]">Día y Hora</span>
+          <strong id="modal-schedule" class="text-white font-bold">Viernes - 10:00 PM</strong>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-slate-400 block text-[10px]">Rebuy / Add-on</span>
+          <strong id="modal-rebuy" class="text-slate-300 font-bold">$150 / NO ADD-ON</strong>
+        </div>
+      </div>
+
+      <button onclick="openWhatsApp('¡Hola! Quiero registrarme para el torneo seleccionado.', 'torneos')" class="interactive-btn w-full py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider text-slate-950 bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 shadow-xl">
+        Inscribirme Ahora por WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Ranking Official Poster Modal -->
+  <div id="ranking-poster-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 hidden">
+    <div class="glass-card w-full max-w-xl rounded-3xl p-6 relative border border-cyan-500/40 space-y-4 max-h-[92vh] overflow-y-auto">
+      <button onclick="closeModal('ranking-poster-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-full bg-slate-900/80">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="space-y-1 pr-8">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-extrabold font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">AFICHE OFICIAL</span>
+        <h3 class="text-2xl font-black text-white font-display">RANKING ABC POKER</h3>
+        <p class="text-xs text-slate-300">Tabla de Clasificación General</p>
+      </div>
+
+      <div class="relative rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-slate-950 flex items-center justify-center">
+        <img src="/RANKINGABCC.jpg" alt="Ranking Oficial ABC Poker" class="w-full h-full object-contain max-h-[65vh]" />
+      </div>
+
+      <div class="flex items-center justify-between pt-2 text-xs text-slate-400 font-mono">
+        <span>Líder Actual: <strong class="text-amber-400">DONROBA69 (235 PTS)</strong></span>
+        <button onclick="closeModal('ranking-poster-modal')" class="interactive-btn px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-cyan-400">
+          Cerrar Vista
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Merch WhatsApp Pre-Checkout Order Modal -->
+  <div id="merch-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 hidden">
+    <div class="glass-card w-full max-w-lg rounded-3xl p-6 relative border border-purple-500/40 space-y-5 max-h-[92vh] overflow-y-auto">
+      <button onclick="closeModal('merch-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-full bg-slate-900/80">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="space-y-1 pr-8">
+        <span id="merch-modal-badge" class="inline-block px-3 py-1 rounded-full text-[10px] font-extrabold font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30 uppercase">DROP EXCLUSIVO</span>
+        <h3 id="merch-modal-title" class="text-3xl font-black text-white font-display">The As</h3>
+        <p id="merch-modal-desc" class="text-xs text-slate-300">Franela de algodón pesado 240g con corte oversize premium.</p>
+      </div>
+
+      <!-- Image Carousel Gallery Stage -->
+      <div class="space-y-3">
+        <div class="relative rounded-2xl overflow-hidden border border-purple-500/30 shadow-2xl h-64 bg-slate-950 flex items-center justify-center group">
+          <img id="merch-modal-img" src="" alt="Merch Preview" class="w-full h-full object-cover transition-all duration-300" />
+          
+          <!-- Prev / Next Navigation Arrows -->
+          <button id="merch-modal-prev-btn" onclick="prevMerchImage()" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/80 border border-purple-500/40 text-purple-300 hover:text-white flex items-center justify-center backdrop-blur-md hidden transition-all" title="Foto Anterior">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button id="merch-modal-next-btn" onclick="nextMerchImage()" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/80 border border-purple-500/40 text-purple-300 hover:text-white flex items-center justify-center backdrop-blur-md hidden transition-all" title="Siguiente Foto">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Thumbnail Carousel Row -->
+        <div id="merch-modal-thumbs" class="flex gap-2 overflow-x-auto pb-1 pt-1">
+          <!-- Dynamically populated thumbnails -->
+        </div>
+      </div>
+
+      <!-- Price & Size Selection Options -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-950 border border-slate-800">
+          <span class="text-xs text-slate-400 font-mono">Precio Oficial</span>
+          <strong id="merch-modal-price" class="text-2xl font-black text-amber-400 font-mono">$32.00</strong>
+        </div>
+
+        <!-- Size Selection -->
+        <div class="space-y-2">
+          <label class="text-xs font-bold text-slate-300 uppercase tracking-wider block">Seleccionar Talla:</label>
+          <div class="flex flex-wrap gap-2" id="merch-modal-sizes">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Order CTA -->
+      <button id="merch-modal-btn" onclick="submitMerchOrder()" class="interactive-btn w-full py-4 rounded-2xl font-black text-xs uppercase tracking-wider text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 shadow-xl flex items-center justify-center gap-2">
+        <i data-lucide="message-circle" class="w-5 h-5 fill-slate-950"></i>
+        <span>Pedir Prenda por WhatsApp</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Platforms & IDs Infographic Modal -->
+  <div id="platforms-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 hidden">
+    <div class="glass-card w-full max-w-2xl rounded-3xl p-6 relative border border-cyan-500/40 space-y-4 max-h-[92vh] overflow-y-auto">
+      <button onclick="closeModal('platforms-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-full bg-slate-900/80">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="space-y-1 pr-8">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-extrabold font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase">PLATAFORMAS OFICIALES</span>
+        <h3 class="text-2xl font-black text-white font-display">IDS DE CLUB EN PLATAFORMAS</h3>
+        <p class="text-xs text-slate-300">Consulta y copia las credenciales oficiales de PokerBros, Suprema Poker y ClubGG.</p>
+      </div>
+
+      <div class="relative rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-slate-950 flex items-center justify-center">
+        <img src="/logos/informacion id.PNG" alt="Información de IDs ABC Poker" class="w-full h-full object-contain max-h-[58vh]" />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3 rounded-xl bg-slate-950 border border-amber-500/30 text-center">
+          <span class="text-slate-400 text-[10px] block">PokerBros Privado / Unión</span>
+          <strong class="text-amber-400 font-mono">1743809 / 1758073</strong>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-950 border border-orange-500/30 text-center">
+          <span class="text-slate-400 text-[10px] block">Suprema Poker Club ID</span>
+          <strong class="text-orange-400 font-mono">62546</strong>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-950 border border-cyan-500/30 text-center">
+          <span class="text-slate-400 text-[10px] block">ClubGG Club ID</span>
+          <strong class="text-cyan-400 font-mono">589574</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript App Logic & Zero-Lag Orca Scroll Engine + Persistent 3D Carousel -->
+  <script>
+    // Data structures with Official Flyer Images from 'los 7'
+    const TOURNAMENTS = [
+      {
+        id: '15k-weeknight',
+        title: '15K GTD WEEKNIGHT',
+        subtitle: 'Arranca la Semana Ganando',
+        day: 'Lunes',
+        time: '7:00 PM',
+        gtd: '$15,000 GTD',
+        buyIn: '$65 / 40.000PTS',
+        pts: '40.000 PTS',
+        rebuy: '$65',
+        addOn: 'NO ADD-ON',
+        badge: 'LUNES CLÁSICO',
+        flyerImage: '/los 7/WEEKNIGHT.jpg',
+        accentColor: '#8b5cf6'
+      },
+      {
+        id: '15k-wed-freezeout',
+        title: '15K WED FREEZEOUT',
+        subtitle: 'Sin Rebuys ni Add-ons • Pura Habilidad',
+        day: 'Miércoles',
+        time: '5:00 PM',
+        gtd: '$15,000 GTD',
+        buyIn: '$150 / 45.000PTS',
+        pts: '45.000 PTS',
+        rebuy: 'NO REBUY',
+        addOn: 'NO ADD-ON',
+        badge: 'FREEZEOUT',
+        flyerImage: '/los 7/FREEZEOUT.jpg',
+        accentColor: '#06b6d4'
+      },
+      {
+        id: 'almighty-stack',
+        title: '25K ALMIGHTYSTACK',
+        subtitle: 'Estructura Profunda de Titanes',
+        day: 'Jueves',
+        time: '7:00 PM',
+        gtd: '$25,000 GTD',
+        buyIn: '$100 / 100.000PTS',
+        pts: '100.000 PTS',
+        rebuy: '$100',
+        addOn: 'NO ADD-ON',
+        badge: 'ALMIGHTY JUEVES',
+        flyerImage: '/los 7/almighty.jpg',
+        accentColor: '#eab308'
+      },
+      {
+        id: '8k-superbounty',
+        title: '8K SUPERBOUNTY',
+        subtitle: 'Edición Bounty del Viernes',
+        day: 'Viernes',
+        time: '10:00 PM',
+        gtd: '$8,000 GTD',
+        buyIn: '$150 / 40.000PTS',
+        pts: '40.000 PTS',
+        rebuy: '$150',
+        addOn: 'NO ADD-ON',
+        badge: 'SUPERBOUNTY VIERNES',
+        flyerImage: '/los 7/8k superbounty.jpg',
+        accentColor: '#f59e0b'
+      },
+      {
+        id: '20k-vegas-vintage',
+        title: "20K GTD LUCKY 7'S",
+        subtitle: 'Edición Vegas Vintage',
+        day: 'Sábado',
+        time: '8:00 PM',
+        gtd: '$20,000 GTD',
+        buyIn: '$125 - 35.000PTS',
+        pts: '35.000 PTS',
+        rebuy: '$125',
+        addOn: 'NO ADD-ON',
+        badge: 'SÁBADO VIP',
+        flyerImage: '/los 7/VEGAS VINTAGE.jpg',
+        accentColor: '#10b981'
+      },
+      {
+        id: '25k-super-sunday',
+        title: '25K SUPER SUNDAY',
+        subtitle: 'El Gran Estelar Dominical',
+        day: 'Domingo',
+        time: '5:00 PM',
+        gtd: '$25,000 GTD',
+        buyIn: '$50 - 40.000PTS',
+        pts: '40.000 PTS',
+        rebuy: '$50',
+        addOn: '1.2X FICHAS INICIALES',
+        badge: 'DOMINGO ESTELAR',
+        flyerImage: '/los 7/super sunday.jpg',
+        accentColor: '#ef4444'
+      }
+    ];
+
+    // 3 Confirmed Weekly Tournaments (images from 'calendario/confirmados/')
+    const CALENDAR_EVENTS = [
+      {
+        id: 'cal-pko',
+        date: '14',
+        dayName: 'Martes',
+        title: 'PKO BOUNTY CAZADOR',
+        gtd: '$500 GTD',
+        buyIn: '$15 - 50.000PTS',
+        time: '10:00 PM',
+        status: 'confirmado',
+        image: '/calendario/confirmados/PKO.jpg',
+        clubId: '1743809',
+        refId: '3384701',
+        badge: 'CONFIRMADO MARTES'
+      },
+      {
+        id: 'cal-monstertack',
+        date: '16',
+        dayName: 'Jueves',
+        title: 'MONSTER STACK SEMANAL',
+        gtd: '$500 GTD',
+        buyIn: '$10 - 100.000PTS',
+        time: '8:00 PM',
+        status: 'confirmado',
+        image: '/calendario/confirmados/monseterr.jpg',
+        clubId: '1743809',
+        refId: '3384701',
+        badge: 'CONFIRMADO JUEVES'
+      },
+      {
+        id: 'cal-sunday',
+        date: '18',
+        dayName: 'Domingo',
+        title: 'SUNDAY SPECIAL ESTELAR',
+        gtd: '$700 GTD',
+        buyIn: '$10',
+        time: '5:00 PM',
+        status: 'confirmado',
+        image: '/calendario/confirmados/sunday.jpg',
+        clubId: '1743809',
+        refId: '3384701',
+        badge: 'ESTELAR DOMINICAL'
+      }
+    ];
+
+    const WINNERS = [
+      {
+        championName: 'guillarbu',
+        tournamentTitle: '15K WED FREEZEOUT',
+        prize: '$3,798.21',
+        bounty: null,
+        date: 'Campeón Estelar',
+        picture: '/ganadores/guillarbu.JPG',
+        badge: 'CAMPEÓN 🏆'
+      },
+      {
+        championName: 'El-algoritmo',
+        tournamentTitle: 'PKO BOUNTY',
+        prize: '$95.68',
+        bounty: '$129.84',
+        date: 'Campeón Cazador',
+        picture: null,
+        badge: 'CAMPEÓN 🎯'
+      },
+      {
+        championName: 'Bolek10',
+        tournamentTitle: '7K SUPERBOUNTY',
+        prize: '$657.72',
+        bounty: '$1,833.75',
+        date: 'Campeón Estelar',
+        picture: null,
+        badge: 'CAMPEÓN 👑'
+      }
+    ];
+
+    const RANKING = [
+      { rank: 1, name: 'DONROBA69', ptsTorneos: 210, ptsExtra: 25, total: 235, badge: 'LÍDER #1 👑' },
+      { rank: 2, name: 'PedroEc', ptsTorneos: 160, ptsExtra: 50, total: 210, badge: 'TOP 2 💎' },
+      { rank: 3, name: 'Manuelito77', ptsTorneos: 180, ptsExtra: 25, total: 205, badge: 'TOP 3 🏆' },
+      { rank: 4, name: 'TerminatorAA', ptsTorneos: 170, ptsExtra: 25, total: 195, badge: 'TOP 4 🔥' },
+      { rank: 5, name: 'Jotaking', ptsTorneos: 165, ptsExtra: 25, total: 190, badge: 'TOP 5 ⚡' },
+      { rank: 6, name: 'ㅌ| Riverista', ptsTorneos: 120, ptsExtra: 25, total: 145, badge: 'TOP 6 ♠️' },
+      { rank: 7, name: 'Matatoros', ptsTorneos: 115, ptsExtra: 25, total: 140, badge: 'TOP 7 ♠️' },
+      { rank: 8, name: 'Pipa1', ptsTorneos: 115, ptsExtra: 25, total: 140, badge: 'TOP 8 ♠️' },
+      { rank: 9, name: 'HE IS GOOD', ptsTorneos: 110, ptsExtra: 25, total: 135, badge: 'TOP 9 ♠️' },
+      { rank: 10, name: 'Amymar', ptsTorneos: 95, ptsExtra: 25, total: 120, badge: 'TOP 10 ♠️' }
+    ];
+
+    const MERCH = [
+      {
+        id: 'franela-the-as',
+        name: 'The As',
+        category: 'franelas',
+        price: 32.00,
+        badge: 'MÁS VENDIDO',
+        desc: 'Franela de algodón pesado 240g con corte oversize premium y grabado del As de Picas ABC en relieve.',
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        colors: [
+          { name: 'Negro Mate', hex: '#111111' },
+          { name: 'Azul Noche', hex: '#0B132B' },
+          { name: 'Blanco Puro', hex: '#FFFFFF' }
+        ],
+        images: [
+          '/merch fotos/The As/theas.png',
+          '/merch fotos/The As/camisa de frente.jpg',
+          '/merch fotos/The As/diseno franela.jpg'
+        ],
+        isFeatured: true
+      },
+      {
+        id: 'franela-apex-predator',
+        name: 'Apex predator',
+        category: 'franelas',
+        price: 35.00,
+        badge: 'EDICIÓN LIMITADA',
+        desc: 'Diseño exclusivo con orca ABC de ataque en la espalda y logo estampado en el pecho. Algodón peinado ultra suave.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        colors: [
+          { name: 'Blanco Puro', hex: '#FFFFFF' },
+          { name: 'Negro Carbón', hex: '#1C1C1C' }
+        ],
+        images: [
+          '/merch fotos/apex predator/drop a predator frente.jpg',
+          '/merch fotos/apex predator/drop a predator atras.jpg',
+          '/merch fotos/apex predator/apex .png'
+        ],
+        isFeatured: true
+      },
+      {
+        id: 'hoodie-all-in',
+        name: 'All in',
+        category: 'hoodies',
+        price: 58.00,
+        badge: 'EDICIÓN ESPECIAL',
+        desc: 'Hoodie con capucha doble capa, bolsillo canguro reforzado y gráfico arterial ALL IN ABC en el pecho.',
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        colors: [],
+        images: [
+          '/merch fotos/all_in/hoodie solo.png',
+          '/merch fotos/all_in/hoodie.jpg',
+          '/merch fotos/all_in/hoodie 2.jpg'
+        ],
+        isFeatured: true
+      },
+      {
+        id: 'gorra-royal-snapback',
+        name: 'Gorra Snapback Royal',
+        category: 'gorras',
+        price: 28.00,
+        badge: 'EXCLUSIVO',
+        desc: 'Gorra de visera plana con estructura de 6 paneles, bordado frontal 3D dorado y broche ajustable.',
+        sizes: ['Ajustable'],
+        colors: [
+          { name: 'Negro / Dorado', hex: '#1A1A1A' },
+          { name: 'Azul Marino', hex: '#0D1B2A' }
+        ],
+        images: [],
+        isFeatured: false
+      },
+      {
+        id: 'gorra-apex-cap',
+        name: 'Gorra Trucker Apex',
+        category: 'gorras',
+        price: 26.00,
+        badge: 'NUEVO',
+        desc: 'Malla respirable de alta calidad en la parte posterior con parche frontal tejido de la orca ABC.',
+        sizes: ['Ajustable'],
+        colors: [
+          { name: 'Negro Total', hex: '#000000' },
+          { name: 'Gris / Violeta', hex: '#4A4E69' }
+        ],
+        images: [],
+        isFeatured: false
+      },
+      {
+        id: 'hoodie-apex-stealth',
+        name: 'Hoodie Apex Stealth',
+        category: 'hoodies',
+        price: 62.00,
+        badge: 'PROFESIONAL',
+        desc: 'Franja reflectiva impermeable con cremallera oculta y grabado térmico de alta densidad.',
+        sizes: ['M', 'L', 'XL'],
+        colors: [
+          { name: 'Gris Oscuro', hex: '#22252A' },
+          { name: 'Azul Profundo', hex: '#0B132B' }
+        ],
+        images: [],
+        isFeatured: false
+      }
+    ];
+
+    // Initialize App
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      initTournamentsCarousel();
+      renderCalendar('all');
+      renderWinners();
+      renderRanking();
+      renderMerch('todos');
+      initOrcaScrollCanvas();
+    });
+
+    // -------------------------------------------------------------
+    // SILKY SMOOTH PERSISTENT 3D COVERFLOW CAROUSEL ENGINE
+    // -------------------------------------------------------------
+    let currentFlyerIndex = 0;
+
+    function initTournamentsCarousel() {
+      const stage = document.getElementById('tournaments-carousel-stage');
+      const dots = document.getElementById('carousel-dots-container');
+      if (!stage) return;
+
+      // Render fixed persistent DOM cards ONCE so CSS 3D transitions trigger smoothly
+      stage.innerHTML = TOURNAMENTS.map((t, idx) => `
+        <div id="flyer-card-${idx}" onclick="selectFlyerIndex(${idx})" 
+          class="flyer-3d-card flyer-card-translucent absolute w-[280px] sm:w-[340px] rounded-3xl overflow-hidden cursor-pointer shadow-2xl">
+          
+          <!-- High Res Official Flyer Image with Translucent Light Bleed -->
+          <div class="relative w-full aspect-[4/5] overflow-hidden bg-transparent">
+            <img src="${t.flyerImage}" alt="${t.title}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-extrabold font-mono bg-slate-950/75 text-amber-300 border border-amber-500/40 backdrop-blur-md shadow-md">
+              ${t.badge}
+            </div>
+            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold font-mono bg-cyan-950/75 text-cyan-300 border border-cyan-500/40 backdrop-blur-md shadow-md">
+              ${t.gtd}
+            </div>
+          </div>
+
+          <!-- Translucent Glass Footer -->
+          <div class="p-4 bg-slate-950/40 backdrop-blur-md border-t border-cyan-500/20 space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base sm:text-lg font-black text-white font-display truncate">${t.title}</h3>
+              <span class="text-[11px] font-mono text-slate-300 shrink-0">${t.day} • ${t.time}</span>
+            </div>
+
+            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-700/50">
+              <span class="text-slate-300">Buy-in: <strong class="text-white font-mono">${t.buyIn}</strong></span>
+              <button onclick="event.stopPropagation(); openFlyerModal('${t.id}')" class="interactive-btn px-3.5 py-1.5 rounded-xl font-bold text-[11px] text-slate-950 bg-gradient-to-r from-cyan-400 to-blue-400 shadow-md">
+                Ver Flyer
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Add touch swipe support
+      let touchStartX = 0;
+      stage.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+
+      stage.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 40) {
+          if (diff < 0) nextTournamentFlyer();
+          else prevTournamentFlyer();
+        }
+      }, { passive: true });
+
+      updateTournamentsCarousel();
+    }
+
+    function updateTournamentsCarousel() {
+      const total = TOURNAMENTS.length;
+      const dotsContainer = document.getElementById('carousel-dots-container');
+
+      TOURNAMENTS.forEach((_, idx) => {
+        const card = document.getElementById(`flyer-card-${idx}`);
+        if (!card) return;
+
+        let diff = idx - currentFlyerIndex;
+        if (diff > Math.floor(total / 2)) diff -= total;
+        if (diff < -Math.floor(total / 2)) diff += total;
+
+        const isActive = diff === 0;
+        const isVisible = Math.abs(diff) <= 2;
+
+        if (!isVisible) {
+          card.style.opacity = '0';
+          card.style.pointerEvents = 'none';
+          card.style.transform = `translateX(${diff * 350}px) scale(0.5)`;
+          return;
+        }
+
+        card.style.pointerEvents = 'auto';
+        const translateX = diff * (window.innerWidth < 640 ? 210 : 310);
+        const scale = isActive ? 1.08 : (Math.abs(diff) === 1 ? 0.84 : 0.68);
+        const zIndex = 30 - Math.abs(diff) * 10;
+        const opacity = isActive ? '1.0' : (Math.abs(diff) === 1 ? '0.65' : '0.30');
+
+        card.style.transform = `translateX(${translateX}px) scale(${scale})`;
+        card.style.zIndex = zIndex;
+        card.style.opacity = opacity;
+
+        if (isActive) {
+          card.style.borderColor = '#38bdf8';
+          card.style.boxShadow = '0 0 45px rgba(56, 189, 248, 0.45)';
+          card.style.filter = 'brightness(1.05)';
+        } else {
+          card.style.borderColor = 'rgba(30, 41, 59, 0.8)';
+          card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+          card.style.filter = 'brightness(0.85)';
+        }
+      });
+
+      // Update Dots
+      if (dotsContainer) {
+        dotsContainer.innerHTML = TOURNAMENTS.map((_, idx) => `
+          <button onclick="selectFlyerIndex(${idx})" class="h-2.5 rounded-full transition-all duration-300 ${idx === currentFlyerIndex ? 'bg-cyan-400 w-8 shadow-[0_0_12px_rgba(56,189,248,0.7)]' : 'bg-slate-700 hover:bg-slate-500 w-2.5'}"></button>
+        `).join('');
+      }
+
+      lucide.createIcons();
+    }
+
+    function nextTournamentFlyer() {
+      currentFlyerIndex = (currentFlyerIndex + 1) % TOURNAMENTS.length;
+      updateTournamentsCarousel();
+    }
+
+    function prevTournamentFlyer() {
+      currentFlyerIndex = (currentFlyerIndex - 1 + TOURNAMENTS.length) % TOURNAMENTS.length;
+      updateTournamentsCarousel();
+    }
+
+    function selectFlyerIndex(idx) {
+      if (currentFlyerIndex === idx) {
+        openFlyerModal(TOURNAMENTS[idx].id);
+      } else {
+        currentFlyerIndex = idx;
+        updateTournamentsCarousel();
+      }
+    }
+
+    // -------------------------------------------------------------
+    // INSTANT REAL-TIME 3D ORCA SCROLL ENGINE (ZERO TRAILING DELAY)
+    // -------------------------------------------------------------
+    function initOrcaScrollCanvas() {
+      const canvas = document.getElementById('orca-scroll-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      const totalFrames = 129;
+      const frameImages = [];
+      let loadedCount = 0;
+
+      // Preload images
+      for (let i = 1; i <= totalFrames; i++) {
+        const img = new Image();
+        const frameNum = String(i).padStart(3, '0');
+        img.src = `/orca scroll/ezgif-frame-${frameNum}.jpg`;
+        
+        if ('decode' in img) {
+          img.decode().then(() => {
+            loadedCount++;
+            checkReady();
+          }).catch(() => {
+            loadedCount++;
+            checkReady();
+          });
+        } else {
+          img.onload = () => {
+            loadedCount++;
+            checkReady();
+          };
+        }
+        frameImages.push(img);
+      }
+
+      function checkReady() {
+        if (loadedCount === 1) {
+          resizeCanvas();
+          renderFrame(0);
+          updateCanvasClarityAndBlur();
+        }
+      }
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        renderFrame(calculateTargetHeroFrame());
+      }
+
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+
+      function calculateTargetHeroFrame() {
+        const beneficiosEl = document.getElementById('beneficios');
+        const heroEl = document.getElementById('hero');
+        
+        const section1Height = beneficiosEl ? beneficiosEl.offsetTop : (heroEl ? heroEl.offsetHeight : 700);
+        const scrollTop = window.scrollY;
+        
+        const progress = Math.min(1, Math.max(0, scrollTop / (section1Height || 1)));
+        return Math.floor(progress * (totalFrames - 1));
+      }
+
+      function renderFrame(index) {
+        const frameIdx = Math.min(totalFrames - 1, Math.max(0, index));
+        const img = frameImages[frameIdx];
+        if (img && img.complete) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+          const hRatio = canvas.width / img.width;
+          const vRatio = canvas.height / img.height;
+          const ratio = Math.max(hRatio, vRatio);
+
+          const isDesktop = window.innerWidth >= 1024;
+          const rightOffset = isDesktop ? (canvas.width * 0.18) : 0;
+
+          const centerShift_x = ((canvas.width - img.width * ratio) / 2) + rightOffset;
+          const centerShift_y = (canvas.height - img.height * ratio) / 2;
+
+          ctx.drawImage(img, 0, 0, img.width, img.height, centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
+        }
+      }
+
+      function updateCanvasClarityAndBlur() {
+        const beneficiosEl = document.getElementById('beneficios');
+        const section1Height = beneficiosEl ? beneficiosEl.offsetTop : 700;
+        const scrollTop = window.scrollY;
+
+        if (scrollTop >= section1Height - 80) {
+          canvas.style.filter = 'blur(16px) brightness(0.35) contrast(1.0)';
+          canvas.style.opacity = '0.35';
+        } else {
+          const ratio = Math.min(1, Math.max(0, scrollTop / (section1Height - 80)));
+          const blurVal = (ratio * 16).toFixed(1);
+          const opacityVal = (0.95 - (ratio * 0.6)).toFixed(2);
+          const brightnessVal = (1.05 - (ratio * 0.7)).toFixed(2);
+          
+          canvas.style.filter = `blur(${blurVal}px) brightness(${brightnessVal}) contrast(1.15)`;
+          canvas.style.opacity = opacityVal;
+        }
+      }
+
+      // 60FPS Silky Smooth Physics Lerp Scroll Render Loop
+      let currentFrameVal = 0;
+      let targetFrameVal = 0;
+
+      function renderLoop() {
+        targetFrameVal = calculateTargetHeroFrame();
+        currentFrameVal += (targetFrameVal - currentFrameVal) * 0.35;
+        if (Math.abs(targetFrameVal - currentFrameVal) < 0.05) {
+          currentFrameVal = targetFrameVal;
+        }
+
+        renderFrame(Math.round(currentFrameVal));
+        updateCanvasClarityAndBlur();
+        requestAnimationFrame(renderLoop);
+      }
+
+      requestAnimationFrame(renderLoop);
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-menu-drawer');
+      if (!drawer) return;
+      drawer.classList.toggle('hidden');
+    }
+
+    // -------------------------------------------------------------
+    // CALENDARIO DE TORNEOS CONFIRMADOS WITH COPYABLE POKERBROS ID
+    // -------------------------------------------------------------
+    function filterCalendar(day) {
+      document.querySelectorAll('#calendar-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
+      renderCalendar(day);
+    }
+
+    function renderCalendar(filterDay) {
+      const container = document.getElementById('calendar-list');
+      if (!container) return;
+
+      const filtered = CALENDAR_EVENTS.filter(e => filterDay === 'all' || e.dayName === filterDay);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="p-10 text-center space-y-3">
+            <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 text-amber-400 flex items-center justify-center mx-auto text-xl font-bold">
+              🏆
+            </div>
+            <h4 class="text-base font-bold text-white">No hay torneo estelar confirmado para el ${filterDay}</h4>
+            <p class="text-xs text-slate-400 max-w-md mx-auto">Nuestros 3 torneos semanales confirmados se juegan los <strong>Miércoles, Viernes y Domingo</strong>.</p>
+            <button onclick="filterCalendar('all')" class="interactive-btn px-4 py-2 rounded-xl text-xs font-bold text-cyan-300 bg-slate-900 border border-cyan-500/30">
+              Ver Todos los Torneos Confirmados
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(e => `
+        <div class="p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-6 bg-slate-950/40 backdrop-blur-md hover:bg-slate-900/60 transition-all border-b border-slate-800/60 last:border-0">
+          
+          <!-- Image & Info Column -->
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 w-full md:w-auto text-center sm:text-left">
+            <div class="relative w-full sm:w-44 h-32 rounded-2xl overflow-hidden border border-cyan-500/30 shadow-xl shrink-0 group bg-transparent">
+              <img src="${e.image}" alt="${e.title}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+              <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-emerald-500/90 text-slate-950 text-[9px] font-extrabold uppercase tracking-wider backdrop-blur-md">
+                ${e.status}
+              </span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-extrabold font-mono border border-amber-500/30 uppercase">
+                  ${e.badge}
+                </span>
+                <span class="text-xs font-mono font-bold text-cyan-400">
+                  ${e.dayName} • ${e.time}
+                </span>
+              </div>
+
+              <h4 class="text-xl font-black text-white font-display">${e.title}</h4>
+              
+              <div class="flex items-center justify-center sm:justify-start gap-3 text-xs">
+                <span class="text-slate-300">Garantizado: <strong class="text-amber-400 font-mono text-sm">${e.gtd}</strong></span>
+                <span class="text-slate-300">• Buy-in: <strong class="text-white font-mono">${e.buyIn}</strong></span>
+              </div>
+
+              <!-- Quick Copyable PokerBros ID Box -->
+              <div class="inline-flex items-center gap-2 p-2 rounded-xl bg-slate-950/60 backdrop-blur-md border border-cyan-500/30 text-[11px]">
+                <span class="text-slate-300 font-mono">ID Club: <strong class="text-white font-mono font-bold">${e.clubId}</strong></span>
+                <button onclick="copyToClipboard('${e.clubId}')" class="interactive-btn p-1 rounded bg-blue-600/30 text-cyan-300 hover:bg-blue-600/50" title="Copiar ID Club">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+
+                <span class="text-slate-500">|</span>
+
+                <span class="text-slate-300 font-mono">Referente: <strong class="text-amber-400 font-mono font-bold">${e.refId}</strong></span>
+                <button onclick="copyToClipboard('${e.refId}')" class="interactive-btn p-1 rounded bg-amber-600/30 text-amber-300 hover:bg-amber-600/50" title="Copiar ID Referente">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="flex flex-col items-center md:items-end gap-2 w-full md:w-auto shrink-0">
+            <button onclick="openWhatsApp('¡Hola! Me quiero inscribir en el torneo confirmado: ${e.title} del ${e.dayName}. ID del club: ${e.clubId}, ID Referente: ${e.refId}', 'calendario')" class="interactive-btn w-full sm:w-auto px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-wider text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4 fill-slate-950"></i>
+              <span>Inscribirse por WhatsApp</span>
+            </button>
+          </div>
+
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function renderWinners() {
+      const container = document.getElementById('winners-cards');
+      if (!container) return;
+      
+      container.innerHTML = WINNERS.map(w => `
+        <div class="glass-card p-6 rounded-3xl space-y-4 relative overflow-hidden border border-amber-500/30 flex flex-col justify-between">
+          
+          <!-- Top Image or Icon Showcase -->
+          <div class="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-xl flex items-center justify-center">
+            ${w.picture ? `
+              <img src="${w.picture}" alt="${w.championName}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            ` : `
+              <div class="flex flex-col items-center justify-center p-4 text-center space-y-2 bg-gradient-to-b from-slate-900 via-slate-950 to-blue-950/60 w-full h-full">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl font-black shadow-lg">
+                  👑
+                </div>
+                <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest">${w.badge}</span>
+              </div>
+            `}
+            
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-extrabold font-mono bg-slate-950/85 text-amber-300 border border-amber-500/40 backdrop-blur-md shadow-md">
+              ${w.badge}
+            </span>
+          </div>
+
+          <!-- Title & Details -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xl font-black text-white font-display">${w.championName}</h4>
+              <span class="text-[11px] text-slate-400 font-mono">${w.date}</span>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-slate-950/90 border border-slate-800 space-y-2 text-xs">
+              <span class="text-[10px] text-cyan-400 font-extrabold uppercase font-mono block">${w.tournamentTitle}</span>
+              
+              <div class="flex justify-between items-center pt-1 border-t border-slate-800/80">
+                <span class="text-slate-400">Premio Torneo:</span>
+                <strong class="text-emerald-400 font-mono text-sm">${w.prize}</strong>
+              </div>
+
+              ${w.bounty ? `
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-400">Bounty Cazador:</span>
+                  <strong class="text-amber-400 font-mono text-sm">${w.bounty}</strong>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function renderRanking() {
+      const tbody = document.getElementById('ranking-tbody');
+      if (!tbody) return;
+      tbody.innerHTML = RANKING.map(r => `
+        <tr class="hover:bg-slate-900/80 transition-colors border-b border-slate-800/50">
+          <td class="p-3.5 pl-4 font-mono font-black text-sm ${r.rank === 1 ? 'text-amber-400' : (r.rank === 2 ? 'text-cyan-400' : (r.rank === 3 ? 'text-purple-400' : 'text-slate-400'))}">
+            #${String(r.rank).padStart(2, '0')}
+          </td>
+          <td class="p-3.5 font-bold text-white font-display text-sm flex items-center gap-2.5">
+            <span>${r.name}</span>
+            <span class="px-2 py-0.5 rounded-full text-[9px] font-bold font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">${r.badge}</span>
+          </td>
+          <td class="p-3.5 font-mono font-bold text-slate-300 text-sm">${r.ptsTorneos} PTS</td>
+          <td class="p-3.5 font-mono font-bold text-emerald-400 text-sm">+${r.ptsExtra} PTS</td>
+          <td class="p-3.5 pr-4 text-right font-mono font-black text-amber-400 text-base">
+            ${r.total} PTS
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    let currentSelectedMerch = null;
+    let selectedSize = '';
+    let selectedColor = '';
+    let currentMerchImages = [];
+    let currentMerchImgIndex = 0;
+
+    function filterMerch(category) {
+      document.querySelectorAll('#merch-categories .merch-tab-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-slate-900', 'border-purple-500/40', 'text-white', 'shadow-lg');
+        btn.classList.add('bg-slate-900/80', 'border-slate-800', 'text-slate-300');
+      });
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active', 'bg-slate-900', 'border-purple-500/40', 'text-white', 'shadow-lg');
+        event.currentTarget.classList.remove('bg-slate-900/80', 'border-slate-800', 'text-slate-300');
+      }
+      renderMerch(category);
+    }
+
+    function renderMerch(category = 'todos') {
+      const grid = document.getElementById('merch-grid');
+      if (!grid) return;
+
+      const filtered = category === 'todos' ? MERCH : MERCH.filter(m => m.category === category);
+      
+      // Update category counts
+      document.getElementById('count-todos').textContent = MERCH.length;
+      document.getElementById('count-franelas').textContent = MERCH.filter(m => m.category === 'franelas').length;
+      document.getElementById('count-gorras').textContent = MERCH.filter(m => m.category === 'gorras').length;
+      document.getElementById('count-hoodies').textContent = MERCH.filter(m => m.category === 'hoodies').length;
+
+      const featured = filtered.find(m => m.isFeatured) || filtered[0];
+      const remaining = filtered.filter(m => m.id !== featured?.id);
+
+      let html = '';
+
+      // 1. Featured Bento Hero Card (6 cols)
+      if (featured) {
+        const heroImg = featured.images && featured.images.length > 0 ? featured.images[0] : null;
+        html += `
+          <div class="col-span-12 lg:col-span-6 glass-card rounded-3xl border border-purple-500/40 relative overflow-hidden group flex flex-col justify-between p-6 sm:p-8 min-h-[440px]">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10 pointer-events-none"></div>
+
+            <div class="relative z-20 flex justify-between items-start">
+              <span class="bg-amber-400 text-slate-950 px-3.5 py-1 text-[10px] font-mono font-black uppercase tracking-wider rounded-full shadow-md">
+                ★ ${featured.badge}
+              </span>
+              <span class="text-xl font-black text-amber-400 font-mono bg-slate-950/80 border border-purple-500/30 px-4 py-1 rounded-full">
+                $${featured.price.toFixed(2)}
+              </span>
+            </div>
+
+            <div onclick="openMerchModal('${featured.id}')" class="relative z-10 my-4 flex items-center justify-center h-52 cursor-pointer">
+              ${heroImg ? `
+                <img src="${heroImg}" alt="${featured.name}" class="max-h-full object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500 shadow-2xl" />
+              ` : `
+                <div class="w-full h-full border-2 border-dashed border-purple-500/30 rounded-2xl flex flex-col items-center justify-center p-4 text-center bg-slate-950/60">
+                  <span class="text-xs font-mono text-purple-300 uppercase tracking-widest">[ Previsualización: ${featured.name} ]</span>
+                  <p class="text-[10px] text-slate-400 mt-1">Marco preparado para fotos del catálogo</p>
+                </div>
+              `}
+            </div>
+
+            <div class="relative z-20 space-y-3">
+              <div>
+                <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block">LÍNEA ${featured.category.toUpperCase()} • DROP EXCLUSIVO</span>
+                <h3 class="text-3xl sm:text-4xl font-black text-white font-display">${featured.name}</h3>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 max-w-md leading-relaxed">${featured.desc}</p>
+              
+              <button onclick="openMerchModal('${featured.id}')" class="interactive-btn inline-flex items-center gap-3 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 text-slate-950 px-7 py-3.5 rounded-full font-black text-xs uppercase tracking-wider shadow-xl shadow-emerald-500/20">
+                <i data-lucide="image" class="w-4 h-4 text-slate-950"></i>
+                <span>Ver Fotos y Pedir (${featured.images ? featured.images.length : 0} fotos)</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      // 2. Secondary Bento Cards (first 2 remaining, 3 cols each)
+      remaining.slice(0, 2).forEach(m => {
+        html += renderSingleMerchCard(m);
+      });
+
+      // 3. Middle Accent Bento Banner (6 cols)
+      html += `
+        <div class="col-span-12 lg:col-span-6 glass-card p-6 sm:p-8 rounded-3xl border border-cyan-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 bg-slate-900/90">
+          <div class="space-y-3 flex-1">
+            <span class="text-[10px] font-mono uppercase font-bold tracking-widest bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-3 py-1 rounded-full">
+              ATENCIÓN DIRECTA 24/7
+            </span>
+            <h3 class="text-2xl font-black text-white font-display">Personaliza tu pedido de Merch directamente</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">Selecciona tu talla, escoge el color oficial y recibe tu prenda en cualquier parte del país.</p>
+          </div>
+
+          <div class="w-full sm:w-auto shrink-0">
+            <button onclick="openWhatsApp('¡Hola! Quisiera consultar la Guía de Tallas para el Merch ABC.', 'merch')" class="interactive-btn w-full sm:w-44 bg-cyan-400 text-slate-950 py-3.5 px-6 rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg">
+              Guía de Tallas
+            </button>
+          </div>
+        </div>
+      `;
+
+      // 4. Remaining Catalog Bento Cards (3 cols each)
+      remaining.slice(2).forEach(m => {
+        html += renderSingleMerchCard(m);
+      });
+
+      grid.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    function renderSingleMerchCard(m) {
+      const cardImg = m.images && m.images.length > 0 ? m.images[0] : null;
+      return `
+        <div class="col-span-12 sm:col-span-6 lg:col-span-3 glass-card p-5 rounded-3xl border border-purple-500/20 flex flex-col justify-between space-y-4 group">
+          <div class="flex justify-between items-start">
+            <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold font-mono uppercase border border-purple-500/30">
+              ${m.badge}
+            </span>
+            <span class="text-base font-black text-amber-400 font-mono">$${m.price.toFixed(2)}</span>
+          </div>
+
+          <div onclick="openMerchModal('${m.id}')" class="w-full h-44 rounded-2xl overflow-hidden bg-slate-950/80 border border-slate-800 flex items-center justify-center relative cursor-pointer">
+            ${cardImg ? `
+              <img src="${cardImg}" alt="${m.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              ${m.images.length > 1 ? `
+                <span class="absolute bottom-2 right-2 bg-slate-950/85 text-purple-300 px-2 py-0.5 rounded-full text-[9px] font-mono font-bold border border-purple-500/40 backdrop-blur-md">
+                  📷 ${m.images.length} fotos
+                </span>
+              ` : ''}
+            ` : `
+              <div class="w-full h-full border-2 border-dashed border-slate-800 rounded-2xl flex flex-col items-center justify-center p-3 text-center bg-slate-950">
+                <span class="text-[10px] font-mono text-purple-300 font-bold uppercase">[ Foto: ${m.name} ]</span>
+                <p class="text-[9px] text-slate-500 mt-1">Marco disponible para próximas fotos</p>
+              </div>
+            `}
+          </div>
+
+          <div class="space-y-2">
+            <h4 class="text-lg font-black text-white font-display">${m.name}</h4>
+            <p class="text-xs text-slate-400 leading-relaxed line-clamp-2">${m.desc}</p>
+          </div>
+
+          <button onclick="openMerchModal('${m.id}')" class="interactive-btn w-full py-2.5 rounded-xl font-black text-xs uppercase tracking-wider text-slate-950 bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center gap-2">
+            <i data-lucide="shopping-bag" class="w-4 h-4 fill-slate-950"></i>
+            <span>Ver Prenda y Galería</span>
+          </button>
+        </div>
+      `;
+    }
+
+    function openMerchModal(id) {
+      const p = MERCH.find(m => m.id === id);
+      if (!p) return;
+
+      currentSelectedMerch = p;
+      selectedSize = p.sizes[0] || 'M';
+      currentMerchImages = p.images && p.images.length > 0 ? p.images : [];
+      currentMerchImgIndex = 0;
+
+      document.getElementById('merch-modal-badge').textContent = p.badge;
+      document.getElementById('merch-modal-title').textContent = p.name;
+      document.getElementById('merch-modal-desc').textContent = p.desc;
+      document.getElementById('merch-modal-price').textContent = `$${p.price.toFixed(2)}`;
+
+      updateMerchModalImageDisplay();
+
+      // Sizes
+      const sizesContainer = document.getElementById('merch-modal-sizes');
+      sizesContainer.innerHTML = p.sizes.map((s, idx) => `
+        <button onclick="selectMerchSize('${s}')" class="merch-size-btn ${idx === 0 ? 'bg-purple-500 text-white font-bold border-purple-400' : 'bg-slate-900 text-slate-300 border-slate-800'} px-3.5 py-1.5 rounded-xl text-xs border">
+          ${s}
+        </button>
+      `).join('');
+
+      openModal('merch-modal');
+      lucide.createIcons();
+    }
+
+    function updateMerchModalImageDisplay() {
+      const imgEl = document.getElementById('merch-modal-img');
+      const prevBtn = document.getElementById('merch-modal-prev-btn');
+      const nextBtn = document.getElementById('merch-modal-next-btn');
+      const thumbsContainer = document.getElementById('merch-modal-thumbs');
+
+      if (currentMerchImages.length > 0) {
+        imgEl.src = currentMerchImages[currentMerchImgIndex];
+        imgEl.classList.remove('hidden');
+
+        if (currentMerchImages.length > 1) {
+          prevBtn.classList.remove('hidden');
+          nextBtn.classList.remove('hidden');
+        } else {
+          prevBtn.classList.add('hidden');
+          nextBtn.classList.add('hidden');
+        }
+
+        // Render Thumbnails Carousel Row
+        thumbsContainer.innerHTML = currentMerchImages.map((imgUrl, idx) => `
+          <button onclick="setMerchActiveImage(${idx})" class="w-16 h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${idx === currentMerchImgIndex ? 'border-purple-400 ring-2 ring-purple-500/50 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'}">
+            <img src="${imgUrl}" class="w-full h-full object-cover" />
+          </button>
+        `).join('');
+      } else {
+        imgEl.classList.add('hidden');
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+        thumbsContainer.innerHTML = `
+          <div class="text-[10px] text-slate-500 font-mono text-center w-full py-2">
+            [ Previsualización no disponible para esta prenda ]
+          </div>
+        `;
+      }
+    }
+
+    function setMerchActiveImage(index) {
+      currentMerchImgIndex = index;
+      updateMerchModalImageDisplay();
+    }
+
+    function prevMerchImage() {
+      if (currentMerchImages.length <= 1) return;
+      currentMerchImgIndex = (currentMerchImgIndex - 1 + currentMerchImages.length) % currentMerchImages.length;
+      updateMerchModalImageDisplay();
+    }
+
+    function nextMerchImage() {
+      if (currentMerchImages.length <= 1) return;
+      currentMerchImgIndex = (currentMerchImgIndex + 1) % currentMerchImages.length;
+      updateMerchModalImageDisplay();
+    }
+
+    function selectMerchSize(size) {
+      selectedSize = size;
+      document.querySelectorAll('.merch-size-btn').forEach(btn => {
+        if (btn.textContent.trim() === size) {
+          btn.className = 'merch-size-btn bg-purple-500 text-white font-bold border-purple-400 px-3.5 py-1.5 rounded-xl text-xs border';
+        } else {
+          btn.className = 'merch-size-btn bg-slate-900 text-slate-300 border-slate-800 px-3.5 py-1.5 rounded-xl text-xs border';
+        }
+      });
+    }
+
+    function submitMerchOrder() {
+      if (!currentSelectedMerch) return;
+      const msg = `¡Hola ABC Poker! Quisiera pedir el producto de Merch: ${currentSelectedMerch.name} (Precio: $${currentSelectedMerch.price.toFixed(2)}). Talla: ${selectedSize}.`;
+      openWhatsApp(msg, 'merch');
+      closeModal('merch-modal');
+    }
+
+    function triggerConfettiCelebration() {
+      if (window.confetti) {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openWhatsApp(customMsg, section = 'general') {
+      let phone = '593968092949'; // Default / Calendario / Merch (+593 96 809 2949)
+      if (section === 'torneos') {
+        phone = '593991231425'; // Torneos Section (+593 99 123 1425)
+      }
+      const msg = encodeURIComponent(customMsg || '¡Hola ABC Poker! Deseo unirme al club.');
+      window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text);
+      alert(`¡Copiado al portapapeles: ${text}!`);
+    }
+
+    function openModal(id) {
+      document.getElementById(id)?.classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id)?.classList.add('hidden');
+    }
+
+    function openFlyerModal(tournamentId) {
+      const t = TOURNAMENTS.find(x => x.id === tournamentId);
+      if (!t) return;
+
+      document.getElementById('modal-title').innerText = t.title;
+      document.getElementById('modal-subtitle').innerText = t.subtitle;
+      document.getElementById('modal-badge').innerText = t.badge;
+      document.getElementById('modal-gtd').innerText = t.gtd;
+      document.getElementById('modal-buyin').innerText = t.buyIn;
+      document.getElementById('modal-schedule').innerText = `${t.day} - ${t.time}`;
+      document.getElementById('modal-rebuy').innerText = `${t.rebuy} / ${t.addOn}`;
+
+      const img = document.getElementById('modal-flyer-img');
+      if (img) img.src = t.flyerImage;
+
+      openModal('flyer-modal');
+    }
+  </script>
+</body>
+</html>
