@@ -1391,12 +1391,15 @@
       };
       frameImages[0] = firstImg;
 
-      // 2. Defer remaining 128 background animation frames until after initial page load to free up CDN bandwidth for product photos & flyers
+      // 2. Mobile vs Desktop performance optimization: load 32 key frames on mobile (step 4) to eliminate mobile main-thread lag, and full 129 frames on desktop
+      const isMobileDevice = window.innerWidth < 768;
+      const frameStep = isMobileDevice ? 4 : 1;
+
       window.addEventListener('load', () => {
-        let currentLoadIdx = 2;
+        let currentLoadIdx = 1 + frameStep;
         function loadNextBatch() {
-          const batchEnd = Math.min(totalFrames, currentLoadIdx + 6);
-          for (let i = currentLoadIdx; i <= batchEnd; i++) {
+          const batchEnd = Math.min(totalFrames, currentLoadIdx + (frameStep * 6));
+          for (let i = currentLoadIdx; i <= batchEnd; i += frameStep) {
             if (!frameImages[i - 1]) {
               const img = new Image();
               const frameNum = String(i).padStart(3, '0');
@@ -1404,12 +1407,12 @@
               frameImages[i - 1] = img;
             }
           }
-          currentLoadIdx = batchEnd + 1;
+          currentLoadIdx = batchEnd + frameStep;
           if (currentLoadIdx <= totalFrames) {
             if ('requestIdleCallback' in window) {
               requestIdleCallback(loadNextBatch);
             } else {
-              setTimeout(loadNextBatch, 40);
+              setTimeout(loadNextBatch, 50);
             }
           }
         }
@@ -1436,7 +1439,24 @@
       }
 
       function renderFrame(index) {
-        const frameIdx = Math.min(totalFrames - 1, Math.max(0, index));
+        let frameIdx = Math.min(totalFrames - 1, Math.max(0, index));
+        
+        // Find nearest loaded frame if exact frame isn't loaded yet
+        if (!frameImages[frameIdx] || !frameImages[frameIdx].complete) {
+          let nearest = 0;
+          let minDiff = Infinity;
+          for (let i = 0; i < totalFrames; i++) {
+            if (frameImages[i] && frameImages[i].complete) {
+              const diff = Math.abs(i - frameIdx);
+              if (diff < minDiff) {
+                minDiff = diff;
+                nearest = i;
+              }
+            }
+          }
+          frameIdx = nearest;
+        }
+
         const img = frameImages[frameIdx];
         if (img && img.complete) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
