@@ -1462,9 +1462,14 @@
           const ratio = isMobile ? (maxRatio * 0.70) : maxRatio;
 
           const isDesktop = window.innerWidth >= 1024;
-          const rightOffset = isDesktop ? (canvas.width * 0.18) : 0;
+          let xOffset = 0;
+          if (isDesktop) {
+            xOffset = canvas.width * 0.18;
+          } else if (isMobile) {
+            xOffset = -(canvas.width * 0.15); // Shift canvas background visual to the left on mobile
+          }
 
-          const centerShift_x = ((canvas.width - img.width * ratio) / 2) + rightOffset;
+          const centerShift_x = ((canvas.width - img.width * ratio) / 2) + xOffset;
           const centerShift_y = (canvas.height - img.height * ratio) / 2;
 
           ctx.drawImage(img, 0, 0, img.width, img.height, centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
