@@ -259,11 +259,11 @@
     </header>
 
     <!-- SECTION 1: HERO SECTION -->
-    <section id="hero" class="relative pt-44 sm:pt-36 lg:pt-40 pb-20 min-h-[90vh] flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 sm:mt-0">
+    <section id="hero" class="relative pt-[52vh] sm:pt-36 lg:pt-40 pb-20 min-h-[100vh] flex items-end sm:items-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mb-6 sm:mb-0">
         
-        <!-- Left Aligned Frosted Panel with extra vertical offset on mobile for 3D Killer Whale visual prominence -->
-        <div class="max-w-xl lg:max-w-2xl text-left flex flex-col items-start bg-slate-950/20 sm:bg-slate-950/40 backdrop-blur-sm sm:backdrop-blur-md p-4 sm:p-10 rounded-3xl border border-cyan-500/20 shadow-2xl">
+        <!-- Left Aligned Frosted Panel positioned lower on mobile for 100% 3D Killer Whale visual prominence -->
+        <div class="max-w-xl lg:max-w-2xl text-left flex flex-col items-start bg-slate-950/40 sm:bg-slate-950/40 backdrop-blur-md p-5 sm:p-10 rounded-3xl border border-cyan-500/20 shadow-2xl">
           
           <!-- Badge -->
           <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-blue-950/90 via-slate-900/90 to-cyan-950/90 border border-cyan-500/40 shadow-[0_0_20px_rgba(0,180,255,0.3)] mb-4 sm:mb-6 backdrop-blur-md">
@@ -1279,17 +1279,22 @@
         </div>
       `).join('');
 
-      // Add touch swipe support
+      // Add touch swipe support with strict direction checking to preserve 100% vertical page scroll smoothness
       let touchStartX = 0;
+      let touchStartY = 0;
       stage.addEventListener('touchstart', (e) => {
         touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
       }, { passive: true });
 
       stage.addEventListener('touchend', (e) => {
         const touchEndX = e.changedTouches[0].clientX;
-        const diff = touchEndX - touchStartX;
-        if (Math.abs(diff) > 40) {
-          if (diff < 0) nextTournamentFlyer();
+        const touchEndY = e.changedTouches[0].clientY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        // Only trigger horizontal flyer transition if horizontal gesture is greater than vertical scroll gesture
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+          if (diffX < 0) nextTournamentFlyer();
           else prevTournamentFlyer();
         }
       }, { passive: true });
@@ -1391,15 +1396,12 @@
       };
       frameImages[0] = firstImg;
 
-      // 2. Mobile vs Desktop performance optimization: load 32 key frames on mobile (step 4) to eliminate mobile main-thread lag, and full 129 frames on desktop
-      const isMobileDevice = window.innerWidth < 768;
-      const frameStep = isMobileDevice ? 4 : 1;
-
+      // 2. Progressive non-blocking preloader for smooth 60FPS animation frames
       window.addEventListener('load', () => {
-        let currentLoadIdx = 1 + frameStep;
+        let currentLoadIdx = 2;
         function loadNextBatch() {
-          const batchEnd = Math.min(totalFrames, currentLoadIdx + (frameStep * 6));
-          for (let i = currentLoadIdx; i <= batchEnd; i += frameStep) {
+          const batchEnd = Math.min(totalFrames, currentLoadIdx + 5);
+          for (let i = currentLoadIdx; i <= batchEnd; i++) {
             if (!frameImages[i - 1]) {
               const img = new Image();
               const frameNum = String(i).padStart(3, '0');
@@ -1407,12 +1409,12 @@
               frameImages[i - 1] = img;
             }
           }
-          currentLoadIdx = batchEnd + frameStep;
+          currentLoadIdx = batchEnd + 1;
           if (currentLoadIdx <= totalFrames) {
             if ('requestIdleCallback' in window) {
               requestIdleCallback(loadNextBatch);
             } else {
-              setTimeout(loadNextBatch, 50);
+              setTimeout(loadNextBatch, 30);
             }
           }
         }
