@@ -867,15 +867,15 @@
 
       <!-- Image Carousel Gallery Stage -->
       <div class="space-y-3">
-        <div class="relative rounded-2xl overflow-hidden border border-purple-500/30 shadow-2xl h-64 bg-slate-950 flex items-center justify-center group">
-          <img id="merch-modal-img" src="" alt="Merch Preview" class="w-full h-full object-cover transition-all duration-300" />
+        <div id="merch-modal-img-stage" class="relative rounded-2xl overflow-hidden border border-purple-500/30 shadow-2xl h-72 sm:h-80 bg-slate-950 flex items-center justify-center group" style="touch-action: pan-y;">
+          <img id="merch-modal-img" src="" alt="Merch Preview" class="w-full h-full object-contain p-2 transition-all duration-300" />
           
           <!-- Prev / Next Navigation Arrows -->
-          <button id="merch-modal-prev-btn" onclick="prevMerchImage()" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/80 border border-purple-500/40 text-purple-300 hover:text-white flex items-center justify-center backdrop-blur-md hidden transition-all" title="Foto Anterior">
-            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          <button id="merch-modal-prev-btn" onclick="prevMerchImage()" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-950/85 border border-purple-500/40 text-purple-300 hover:text-white flex items-center justify-center backdrop-blur-md hidden transition-all shadow-xl" title="Foto Anterior">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
           </button>
-          <button id="merch-modal-next-btn" onclick="nextMerchImage()" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-950/80 border border-purple-500/40 text-purple-300 hover:text-white flex items-center justify-center backdrop-blur-md hidden transition-all" title="Siguiente Foto">
-            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          <button id="merch-modal-next-btn" onclick="nextMerchImage()" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-950/85 border border-purple-500/40 text-purple-300 hover:text-white flex items-center justify-center backdrop-blur-md hidden transition-all shadow-xl" title="Siguiente Foto">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
           </button>
         </div>
 
@@ -1921,6 +1921,26 @@
       currentMerchImgIndex = (currentMerchImgIndex + 1) % currentMerchImages.length;
       updateMerchModalImageDisplay();
     }
+
+    // Initialize Merch Gallery Touch Swipe
+    document.addEventListener('DOMContentLoaded', () => {
+      const merchStage = document.getElementById('merch-modal-img-stage');
+      if (merchStage) {
+        let startX = 0, startY = 0;
+        merchStage.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+        }, { passive: true });
+        merchStage.addEventListener('touchend', (e) => {
+          const diffX = e.changedTouches[0].clientX - startX;
+          const diffY = e.changedTouches[0].clientY - startY;
+          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 30) {
+            if (diffX < 0) nextMerchImage();
+            else prevMerchImage();
+          }
+        }, { passive: true });
+      }
+    });
 
     function selectMerchSize(size) {
       selectedSize = size;
