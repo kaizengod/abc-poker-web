@@ -204,17 +204,26 @@
 
         <!-- Desktop Navigation Items -->
         <nav class="hidden md:flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-full border border-blue-500/20 backdrop-blur-md">
-          <button onclick="scrollToSection('beneficios')" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+          <button onclick="scrollToSection('beneficios')" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
             <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Beneficios
           </button>
-          <button onclick="scrollToSection('torneos')" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+          <button onclick="scrollToSection('academy')" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-amber-400"></i> Academy
+          </button>
+          <button onclick="scrollToSection('torneos')" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
             <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i> Torneos
           </button>
-          <button onclick="scrollToSection('calendario')" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+          <button onclick="scrollToSection('calendario')" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
             <i data-lucide="calendar" class="w-4 h-4 text-cyan-400"></i> Calendario
           </button>
-          <button onclick="scrollToSection('ganadores')" class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+          <button onclick="scrollToSection('ganadores')" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
             <i data-lucide="award" class="w-4 h-4 text-purple-400"></i> Ganadores
+          </button>
+          <button onclick="scrollToSection('mision-vision')" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+            <i data-lucide="target" class="w-4 h-4 text-pink-400"></i> Misión
+          </button>
+          <button onclick="scrollToSection('contacto')" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all">
+            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i> Contacto
           </button>
         </nav>
 
@@ -246,6 +255,9 @@
           <button onclick="scrollToSection('beneficios'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
             <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Beneficios
           </button>
+          <button onclick="scrollToSection('academy'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-amber-400"></i> Academy
+          </button>
           <button onclick="scrollToSection('torneos'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
             <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i> Torneos
           </button>
@@ -254,6 +266,12 @@
           </button>
           <button onclick="scrollToSection('ganadores'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
             <i data-lucide="award" class="w-4 h-4 text-purple-400"></i> Ganadores & Rankings
+          </button>
+          <button onclick="scrollToSection('mision-vision'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
+            <i data-lucide="target" class="w-4 h-4 text-pink-400"></i> Misión, Visión & Valores
+          </button>
+          <button onclick="scrollToSection('contacto'); toggleMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-xs font-bold text-slate-200 bg-slate-900/80 border border-slate-800">
+            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i> Comunidad & Contacto
           </button>
         </nav>
 
@@ -279,27 +297,45 @@
           <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-blue-950/90 via-slate-900/90 to-cyan-950/90 border border-cyan-500/40 shadow-[0_0_20px_rgba(0,180,255,0.3)] mb-4 sm:mb-6 backdrop-blur-md">
             <i data-lucide="sparkles" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 animate-pulse"></i>
             <span class="text-[10px] sm:text-xs font-black tracking-widest text-cyan-300 uppercase">
-              CLUB OFICIAL ABC POKER
+              ECOSISTEMA ABC POKER
             </span>
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
           </div>
 
           <!-- Title -->
-          <h1 class="text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-none mb-3 sm:mb-4 font-display">
-            BIENVENIDO <br />
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight mb-3 sm:mb-4 font-display uppercase">
+            MUCHO MÁS <br />
             <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(56,189,248,0.5)]">
-              AL CLUB
+              QUE UN CLUB
             </span>
           </h1>
 
-          <h2 class="text-base sm:text-2xl font-bold text-amber-400 tracking-wide mb-4 sm:mb-6 uppercase flex items-center gap-2 font-display">
-            <span class="w-5 sm:w-8 h-1 bg-amber-400 rounded-full inline-block"></span>
-            LA CASA DE POKER DONDE NACEN LOS CAMPEONES
-          </h2>
+          <!-- Detailed Ecosystem Description -->
+          <div class="space-y-3 mb-6 sm:mb-8 text-slate-100">
+            <p class="text-xs sm:text-base leading-relaxed drop-shadow-md">
+              <strong>ABC Poker Club</strong> es un ecosistema que reúne comunidad, formación, competencia y oportunidades alrededor del póker.
+            </p>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Creamos un espacio donde los jugadores pueden desarrollarse, aprender, compartir experiencias y formar parte de una comunidad que busca elevar el nivel del póker latino.
+            </p>
 
-          <p class="text-xs sm:text-lg text-slate-100 leading-relaxed max-w-xl mb-6 sm:mb-8 drop-shadow-md">
-            En <strong>ABC POKER</strong> vives la experiencia de póker más completa y profesional de la región. Diseñamos el espacio perfecto con torneos garantizados semanales, premios inmediatos y soporte exclusivo 24/7.
-          </p>
+            <div class="pt-2">
+              <span class="text-[11px] font-bold text-amber-400 font-mono uppercase tracking-wider block mb-2">
+                Nuestro ecosistema integra diferentes áreas que trabajan bajo una misma visión:
+              </span>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-xs font-black font-mono shadow-md flex items-center gap-1.5">
+                  <i data-lucide="gamepad-2" class="w-3.5 h-3.5"></i> CLUBES ONLINE
+                </span>
+                <span class="px-3 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-black font-mono shadow-md flex items-center gap-1.5">
+                  <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> ACADEMY
+                </span>
+                <span class="px-3 py-1.5 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-black font-mono shadow-md flex items-center gap-1.5">
+                  <i data-lucide="users" class="w-3.5 h-3.5"></i> COMUNIDAD
+                </span>
+              </div>
+            </div>
+          </div>
 
           <!-- 3-Platform Credentials Box -->
           <div class="w-full p-3.5 sm:p-5 rounded-2xl bg-slate-950/80 sm:bg-slate-900/90 border border-cyan-500/30 backdrop-blur-md shadow-xl mb-6 sm:mb-8 space-y-3 sm:space-y-4">
@@ -344,15 +380,21 @@
                 </div>
               </div>
 
-              <!-- ClubGG Card -->
-              <div class="p-3 sm:p-3.5 rounded-xl bg-slate-950/90 border border-cyan-500/30 space-y-2 flex flex-col justify-between">
+              <!-- ClubGG Card (UPDATED CLUB ID 958819 & REFERENTE ID 72288452) -->
+              <div class="p-3 sm:p-3.5 rounded-xl bg-slate-950/90 border border-cyan-500/30 space-y-1.5 flex flex-col justify-between">
                 <div class="flex items-center justify-between">
                   <img src="/logos/clubgg.jpg" alt="ClubGG" class="h-3.5 sm:h-4 w-auto object-contain rounded max-h-[14px]" />
                   <span class="text-[9px] font-mono text-cyan-400 font-bold uppercase">ClubGG</span>
                 </div>
-                <div class="flex justify-between items-center bg-slate-900/90 px-2 py-1 rounded-lg border border-slate-800 text-[11px]">
-                  <span class="text-slate-400 text-[10px]">Club ID: <strong class="text-white font-mono text-sm font-bold">589574</strong></span>
-                  <button onclick="copyToClipboard('589574')" class="text-cyan-300 p-0.5 hover:text-white" title="Copiar ClubGG ID"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
+                <div class="space-y-1 text-[11px]">
+                  <div class="flex justify-between items-center bg-slate-900/90 px-2 py-1 rounded-lg border border-slate-800">
+                    <span class="text-slate-400 text-[10px]">Club ID: <strong class="text-white font-mono font-bold text-xs">958819</strong></span>
+                    <button onclick="copyToClipboard('958819')" class="text-cyan-300 p-0.5 hover:text-white" title="Copiar ID Club"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
+                  </div>
+                  <div class="flex justify-between items-center bg-slate-900/90 px-2 py-1 rounded-lg border border-slate-800">
+                    <span class="text-slate-400 text-[10px]">Referente: <strong class="text-amber-300 font-mono font-bold text-xs">72288452</strong></span>
+                    <button onclick="copyToClipboard('72288452')" class="text-cyan-300 p-0.5 hover:text-white" title="Copiar ID Referente"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -422,6 +464,163 @@
             <p class="text-[11px] sm:text-xs text-slate-200 leading-relaxed">Mesas activas las 24 horas y torneos estelares cada semana.</p>
           </div>
         </div>
+    <!-- SECTION 2.5: ABC POKER ACADEMY -->
+    <section id="academy" class="py-20 relative overflow-hidden z-10 bg-slate-950/40 border-y border-cyan-500/10 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="inline-block px-3.5 py-1 rounded-full text-xs font-black font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 uppercase tracking-widest shadow-md">
+            🎓 FORMACIÓN & PROFESIONALIZACIÓN
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black text-white font-display">ABC POKER ACADEMY</h2>
+          <p class="text-xs sm:text-base text-slate-200 leading-relaxed font-normal">
+            <strong>ABC Poker Academy</strong> nace con una misión clara: contribuir al desarrollo y profesionalización del póker latinoamericano. A través de formación, contenido y experiencias de aprendizaje, buscamos entregar herramientas que permitan a los jugadores comprender mejor el juego y desarrollar una mentalidad de crecimiento.
+          </p>
+        </div>
+
+        <!-- Interactive Creative Roadmap Timeline -->
+        <div class="space-y-6">
+          <div class="text-center">
+            <h3 class="text-xl sm:text-2xl font-black text-amber-400 font-display uppercase tracking-wider">
+              🚀 RUTA DE APRENDIZAJE & ROADMAP ACADEMY
+            </h3>
+            <p class="text-xs text-slate-400 font-mono mt-1">Estructura progresiva diseñada para llevar tu juego al siguiente nivel</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative">
+            <!-- Milestone 1 -->
+            <div class="glass-card-translucent p-6 rounded-3xl space-y-3 relative group border border-cyan-500/30 hover:border-cyan-400 transition-all cursor-pointer">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 font-mono font-black text-sm flex items-center justify-center shadow-lg">01</span>
+                <i data-lucide="book-open" class="w-6 h-6 text-cyan-400"></i>
+              </div>
+              <h4 class="text-lg font-black text-white font-display">Academy Básica</h4>
+              <p class="text-xs text-slate-200 leading-relaxed">
+                Conceptos fundamentales y estructura de aprendizaje.
+              </p>
+            </div>
+
+            <!-- Milestone 2 -->
+            <div class="glass-card-translucent p-6 rounded-3xl space-y-3 relative group border border-amber-500/30 hover:border-amber-400 transition-all cursor-pointer">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-400 font-mono font-black text-sm flex items-center justify-center shadow-lg">02</span>
+                <i data-lucide="trending-up" class="w-6 h-6 text-amber-400"></i>
+              </div>
+              <h4 class="text-lg font-black text-white font-display">Academy Avanzada</h4>
+              <p class="text-xs text-slate-200 leading-relaxed">
+                Contenido especializado, análisis y desarrollo del jugador.
+              </p>
+            </div>
+
+            <!-- Milestone 3 -->
+            <div class="glass-card-translucent p-6 rounded-3xl space-y-3 relative group border border-purple-500/30 hover:border-purple-400 transition-all cursor-pointer">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-2xl bg-purple-500/20 border border-purple-500/40 text-purple-400 font-mono font-black text-sm flex items-center justify-center shadow-lg">03</span>
+                <i data-lucide="award" class="w-6 h-6 text-purple-400"></i>
+              </div>
+              <h4 class="text-lg font-black text-white font-display">Mentores</h4>
+              <p class="text-xs text-slate-200 leading-relaxed">
+                Profesionales y jugadores con experiencia que comparten conocimiento.
+              </p>
+            </div>
+
+            <!-- Milestone 4 -->
+            <div class="glass-card-translucent p-6 rounded-3xl space-y-3 relative group border border-emerald-500/30 hover:border-emerald-400 transition-all cursor-pointer">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-mono font-black text-sm flex items-center justify-center shadow-lg">04</span>
+                <i data-lucide="users" class="w-6 h-6 text-emerald-400"></i>
+              </div>
+              <h4 class="text-lg font-black text-white font-display">Comunidad</h4>
+              <p class="text-xs text-slate-200 leading-relaxed">
+                Aprender acompañado permite compartir experiencias y perspectivas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mentores / Profes Showcase Gallery -->
+        <div class="space-y-6 pt-4">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span class="text-xs font-bold text-cyan-400 font-mono tracking-widest uppercase">NUESTRO EQUIPO DOCENTE</span>
+              <h3 class="text-2xl sm:text-4xl font-black text-white font-display">NUESTROS PROFESORES & MENTORES</h3>
+            </div>
+            <span class="text-xs text-slate-400 font-mono">Equipo profesional dedicado al progreso del póker latino</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- Mentor 1 -->
+            <div class="glass-card p-4 rounded-3xl space-y-3 group border border-cyan-500/30 hover:border-cyan-400 transition-all">
+              <div class="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800">
+                <img src="/profes/Mentor Gabriel Borbor.JPG" alt="Gabriel Borbor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-black font-mono bg-slate-950/90 text-cyan-300 border border-cyan-500/40 backdrop-blur-md">MENTOR ACADEMY</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-black text-white font-display">Gabriel Borbor</h4>
+                <p class="text-xs text-slate-400 font-mono">Mentor & Instructor de Póker</p>
+              </div>
+            </div>
+
+            <!-- Mentor 2 -->
+            <div class="glass-card p-4 rounded-3xl space-y-3 group border border-cyan-500/30 hover:border-cyan-400 transition-all">
+              <div class="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800">
+                <img src="/profes/Mentor Jose Marin.JPG" alt="Jose Marin" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-black font-mono bg-slate-950/90 text-cyan-300 border border-cyan-500/40 backdrop-blur-md">MENTOR ACADEMY</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-black text-white font-display">Jose Marin</h4>
+                <p class="text-xs text-slate-400 font-mono">Mentor & Instructor de Póker</p>
+              </div>
+            </div>
+
+            <!-- Mentor 3 -->
+            <div class="glass-card p-4 rounded-3xl space-y-3 group border border-cyan-500/30 hover:border-cyan-400 transition-all">
+              <div class="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800">
+                <img src="/profes/Mentor Josue.JPG" alt="Josue" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-black font-mono bg-slate-950/90 text-cyan-300 border border-cyan-500/40 backdrop-blur-md">MENTOR ACADEMY</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-black text-white font-display">Josue</h4>
+                <p class="text-xs text-slate-400 font-mono">Mentor & Instructor de Póker</p>
+              </div>
+            </div>
+
+            <!-- Mentor 4 -->
+            <div class="glass-card p-4 rounded-3xl space-y-3 group border border-cyan-500/30 hover:border-cyan-400 transition-all">
+              <div class="relative w-full h-64 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800">
+                <img src="/profes/mentor - Jeancarlo Tandazo.JPG" alt="Jeancarlo Tandazo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-black font-mono bg-slate-950/90 text-cyan-300 border border-cyan-500/40 backdrop-blur-md">MENTOR ACADEMY</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-black text-white font-display">Jeancarlo Tandazo</h4>
+                <p class="text-xs text-slate-400 font-mono">Mentor & Instructor de Póker</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Foto Grupal Feature Banner -->
+          <div class="glass-card-translucent p-6 sm:p-8 rounded-3xl border border-amber-500/30 flex flex-col md:flex-row items-center gap-6">
+            <div class="relative w-full md:w-1/2 h-64 sm:h-80 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shrink-0">
+              <img src="/profes/Foto grupal.JPG" alt="Equipo de Profesores ABC" class="w-full h-full object-cover" />
+            </div>
+            <div class="space-y-4">
+              <span class="inline-block px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 uppercase">
+                STAFF & MENTORES ABC POKER ACADEMY
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-white font-display">Formando a los Campeones del Futuro</h4>
+              <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                Nuestro cuerpo técnico y mentores combinan años de estudio de teoría GTO, análisis de manos en vivo y experiencia en torneos internacionales para acompañar tu crecimiento en cada etapa de tu carrera.
+              </p>
+              <button onclick="openWhatsApp('¡Hola! Me gustaría información sobre la formación en ABC Poker Academy.', 'general')" class="interactive-btn px-6 py-3.5 rounded-2xl font-black text-xs uppercase text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 shadow-xl flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                <span>Solicitar Información de la Academy</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
@@ -633,6 +832,288 @@
       </div>
     </section>
 
+    <!-- SECTION: MISIÓN, VISIÓN Y VALORES -->
+    <section id="mision-vision" class="py-20 relative z-10 overflow-hidden bg-slate-950/50 border-t border-cyan-500/10 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-2.5">
+          <span class="text-xs font-bold text-cyan-400 font-mono tracking-widest uppercase">NUESTRA IDENTIDAD & PROPÓSITO</span>
+          <h2 class="text-3xl sm:text-5xl font-black text-white font-display">MISIÓN, VISIÓN Y VALORES</h2>
+          <p class="text-xs sm:text-sm text-slate-300">Los pilares fundamentales que guían el crecimiento del ecosistema ABC Poker.</p>
+        </div>
+
+        <!-- Misión & Visión Cards Panel (Inspired by BENEFICIOS DE NUESTRO CLUB) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- MISIÓN Card -->
+          <div class="glass-card-translucent p-6 sm:p-8 rounded-3xl space-y-4 border border-cyan-500/30 hover:border-cyan-400 transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 icon-badge">
+                <i data-lucide="target" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-widest">NUESTRO COMPROMISO</span>
+                <h3 class="text-2xl font-black text-white font-display">MISIÓN</h3>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+              Impulsar el crecimiento de la comunidad del póker, ofreciendo soluciones, educación, acompañamiento, oportunidades y un servicio de excelencia que genere confianza y ayude a nuestros jugadores a alcanzar sus objetivos.
+            </p>
+          </div>
+
+          <!-- VISIÓN 2030 Card -->
+          <div class="glass-card-translucent p-6 sm:p-8 rounded-3xl space-y-4 border border-amber-500/30 hover:border-amber-400 transition-all cursor-pointer">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 icon-badge">
+                <i data-lucide="compass" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-widest">OBJETIVO ESTRATÉGICO</span>
+                <h3 class="text-2xl font-black text-white font-display">VISIÓN 2030</h3>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+              Ser una marca referente del póker latinoamericano, reconocida por su excelencia, integridad y confianza, con una comunidad sólida y jugadores que representen a ABC en escenarios competitivos internacionales.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- VALORES Grid -->
+        <div class="space-y-6 pt-4">
+          <div class="text-center">
+            <h3 class="text-xl sm:text-3xl font-black text-white font-display uppercase tracking-wider">
+              NUESTROS VALORES FUNDAMENTALES
+            </h3>
+            <p class="text-xs text-slate-400 font-mono mt-1">Los principios que definen el espíritu ABC Poker</p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            
+            <!-- Valor 1: Integridad -->
+            <div class="glass-card-translucent p-5 rounded-3xl text-center space-y-3 border border-emerald-500/30 hover:border-emerald-400 transition-all cursor-pointer">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 mx-auto flex items-center justify-center icon-badge">
+                <i data-lucide="shield-check" class="w-6 h-6"></i>
+              </div>
+              <h4 class="text-base font-black text-white font-display">Integridad</h4>
+              <p class="text-[11px] text-slate-300">Transparencia y juego limpio en todo momento.</p>
+            </div>
+
+            <!-- Valor 2: Excelencia -->
+            <div class="glass-card-translucent p-5 rounded-3xl text-center space-y-3 border border-amber-500/30 hover:border-amber-400 transition-all cursor-pointer">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-400 mx-auto flex items-center justify-center icon-badge">
+                <i data-lucide="award" class="w-6 h-6"></i>
+              </div>
+              <h4 class="text-base font-black text-white font-display">Excelencia</h4>
+              <p class="text-[11px] text-slate-300">Estándares de calidad y soporte del más alto nivel.</p>
+            </div>
+
+            <!-- Valor 3: Confianza -->
+            <div class="glass-card-translucent p-5 rounded-3xl text-center space-y-3 border border-cyan-500/30 hover:border-cyan-400 transition-all cursor-pointer">
+              <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 mx-auto flex items-center justify-center icon-badge">
+                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+              </div>
+              <h4 class="text-base font-black text-white font-display">Confianza</h4>
+              <p class="text-[11px] text-slate-300">Seguridad total y respaldos reales para nuestros jugadores.</p>
+            </div>
+
+            <!-- Valor 4: Compromiso -->
+            <div class="glass-card-translucent p-5 rounded-3xl text-center space-y-3 border border-purple-500/30 hover:border-purple-400 transition-all cursor-pointer">
+              <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-500/40 text-purple-400 mx-auto flex items-center justify-center icon-badge">
+                <i data-lucide="flame" class="w-6 h-6"></i>
+              </div>
+              <h4 class="text-base font-black text-white font-display">Compromiso</h4>
+              <p class="text-[11px] text-slate-300">Dedicación continua con el éxito y desarrollo de la comunidad.</p>
+            </div>
+
+            <!-- Valor 5: Innovación -->
+            <div class="glass-card-translucent p-5 rounded-3xl text-center space-y-3 border border-pink-500/30 hover:border-pink-400 transition-all cursor-pointer col-span-2 sm:col-span-1">
+              <div class="w-12 h-12 rounded-2xl bg-pink-500/20 border border-pink-500/40 text-pink-400 mx-auto flex items-center justify-center icon-badge">
+                <i data-lucide="zap" class="w-6 h-6"></i>
+              </div>
+              <h4 class="text-base font-black text-white font-display">Innovación</h4>
+              <p class="text-[11px] text-slate-300">Soluciones modernas y pioneras para elevar el póker latino.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: CONTACTO Y COMUNIDAD -->
+    <section id="contacto" class="py-20 relative z-10 overflow-hidden bg-slate-950/90 border-t border-blue-500/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="inline-block px-3.5 py-1 rounded-full text-xs font-black font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase tracking-widest">
+            🌐 CONECTA CON NOSOTROS
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black text-white font-display">FORMA PARTE DE LA COMUNIDAD ABC</h2>
+          <p class="text-xs sm:text-base text-slate-200 leading-relaxed">
+            Conecta con otros jugadores, descubre novedades, participa en nuestras actividades y mantente al día con todo lo que ocurre dentro del ecosistema ABC.
+          </p>
+        </div>
+
+        <!-- 3 Community Pillars -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- WhatsApp Card -->
+          <div class="glass-card p-6 rounded-3xl space-y-4 border border-emerald-500/30 hover:border-emerald-400 transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 icon-badge">
+                <i data-lucide="message-circle" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-black text-white font-display">WHATSAPP</h3>
+                <p class="text-xs text-slate-300 mt-1">Noticias y comunicaciones oficiales del club.</p>
+              </div>
+            </div>
+            <a href="https://whatsapp.com/channel/0029VbCqcxYJpe8makHop844" target="_blank" class="interactive-btn w-full py-3 rounded-2xl font-black text-xs uppercase tracking-wider text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 flex items-center justify-center gap-2 shadow-lg">
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+              <span>CANAL DE WHATSAPP</span>
+            </a>
+          </div>
+
+          <!-- Discord Card -->
+          <div class="glass-card p-6 rounded-3xl space-y-4 border border-indigo-500/30 hover:border-indigo-400 transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 icon-badge">
+                <i data-lucide="message-square" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-black text-white font-display">DISCORD</h3>
+                <p class="text-xs text-slate-300 mt-1">Comunidad y espacios de interacción activa.</p>
+              </div>
+            </div>
+            <a href="https://discord.gg/yJeN92UVqA" target="_blank" class="interactive-btn w-full py-3 rounded-2xl font-black text-xs uppercase tracking-wider text-white bg-indigo-600 hover:bg-indigo-500 border border-indigo-400 flex items-center justify-center gap-2 shadow-lg">
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+              <span>UNIRSE AL DISCORD</span>
+            </a>
+          </div>
+
+          <!-- Redes Sociales Card -->
+          <div class="glass-card p-6 rounded-3xl space-y-4 border border-pink-500/30 hover:border-pink-400 transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-2xl bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 icon-badge">
+                <i data-lucide="share-2" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-black text-white font-display">REDES SOCIALES</h3>
+                <p class="text-xs text-slate-300 mt-1">Contenido, resultados, novedades y entretenimiento.</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a href="https://www.instagram.com/abcpokerclub/" target="_blank" class="interactive-btn flex-1 py-2.5 rounded-xl text-[11px] font-bold text-pink-300 bg-pink-950/60 border border-pink-500/40 text-center hover:bg-pink-900/60">
+                Instagram
+              </a>
+              <a href="https://www.facebook.com/ABCPOKERCLUB/" target="_blank" class="interactive-btn flex-1 py-2.5 rounded-xl text-[11px] font-bold text-blue-300 bg-blue-950/60 border border-blue-500/40 text-center hover:bg-blue-900/60">
+                Facebook
+              </a>
+              <a href="https://www.youtube.com/@ABCPokerClub" target="_blank" class="interactive-btn flex-1 py-2.5 rounded-xl text-[11px] font-bold text-red-300 bg-red-950/60 border border-red-500/40 text-center hover:bg-red-900/60">
+                YouTube
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Social Media Buttons Grid & Direct Contact Boxes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Direct Social Channels Box -->
+          <div class="glass-card-translucent p-6 rounded-3xl space-y-4 border border-cyan-500/30">
+            <h4 class="text-lg font-black text-white font-display flex items-center gap-2">
+              <i data-lucide="globe" class="w-5 h-5 text-cyan-400"></i>
+              <span>TODOS NUESTROS CANALES OFICIALES</span>
+            </h4>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <a href="https://whatsapp.com/channel/0029VbCqcxYJpe8makHop844" target="_blank" class="interactive-btn p-3.5 rounded-2xl bg-slate-900/90 border border-emerald-500/40 flex items-center gap-3 text-xs text-white">
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="message-circle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <strong class="block text-emerald-400 font-mono text-xs">CANAL WHATSAPP</strong>
+                  <span class="text-[10px] text-slate-400">Noticias & Avisos</span>
+                </div>
+              </a>
+
+              <a href="https://www.instagram.com/abcpokerclub/" target="_blank" class="interactive-btn p-3.5 rounded-2xl bg-slate-900/90 border border-pink-500/40 flex items-center gap-3 text-xs text-white">
+                <div class="w-9 h-9 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="instagram" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <strong class="block text-pink-400 font-mono text-xs">INSTAGRAM</strong>
+                  <span class="text-[10px] text-slate-400">@abcpokerclub</span>
+                </div>
+              </a>
+
+              <a href="https://www.facebook.com/ABCPOKERCLUB/" target="_blank" class="interactive-btn p-3.5 rounded-2xl bg-slate-900/90 border border-blue-500/40 flex items-center gap-3 text-xs text-white">
+                <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="facebook" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <strong class="block text-blue-400 font-mono text-xs">FACEBOOK</strong>
+                  <span class="text-[10px] text-slate-400">ABC POKER CLUB</span>
+                </div>
+              </a>
+
+              <a href="https://www.youtube.com/@ABCPokerClub" target="_blank" class="interactive-btn p-3.5 rounded-2xl bg-slate-900/90 border border-red-500/40 flex items-center gap-3 text-xs text-white">
+                <div class="w-9 h-9 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="youtube" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <strong class="block text-red-400 font-mono text-xs">YOUTUBE</strong>
+                  <span class="text-[10px] text-slate-400">@ABCPokerClub</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- VIP Support & Email Contacts -->
+          <div class="glass-card-translucent p-6 rounded-3xl space-y-4 border border-amber-500/30 flex flex-col justify-between">
+            <div>
+              <h4 class="text-lg font-black text-white font-display flex items-center gap-2">
+                <i data-lucide="headphones" class="w-5 h-5 text-amber-400"></i>
+                <span>CONTACTO Y ATENCIÓN VIP 24/7</span>
+              </h4>
+              <p class="text-xs text-slate-300 mt-1">Soporte directo para cajero, fichas, inscripciones y atención personalizada.</p>
+            </div>
+
+            <div class="space-y-3">
+              <div class="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i>
+                  <span class="text-xs text-slate-400">Correo Oficial:</span>
+                </div>
+                <a href="mailto:abcpoker@protonmail.com" class="text-xs font-mono font-bold text-white hover:text-cyan-300">
+                  abcpoker@protonmail.com
+                </a>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-slate-950 border border-emerald-500/30 space-y-2">
+                <span class="text-[11px] font-bold text-emerald-400 font-mono uppercase block flex items-center gap-1.5">
+                  <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> LÍNEAS DE ATENCIÓN VIP (WHATSAPP)
+                </span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  <button onclick="openWhatsApp('¡Hola! Necesito atención VIP (+593 96 809 2949).', 'general')" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono font-bold hover:border-emerald-500 text-center">
+                    +593 96 809 2949
+                  </button>
+                  <button onclick="openWhatsApp('¡Hola! Necesito atención VIP (+593 99 123 1425).', 'general')" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono font-bold hover:border-emerald-500 text-center">
+                    +593 99 123 1425
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="bg-slate-950 border-t border-blue-500/20 py-12 relative z-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -762,9 +1243,15 @@
 
             <div class="p-2.5 rounded-xl bg-slate-950 border border-cyan-500/30 space-y-1">
               <span class="text-[10px] text-cyan-400 font-extrabold uppercase font-mono block">ClubGG</span>
-              <div class="flex items-center justify-between pt-1">
-                <span class="text-white font-mono font-bold text-xs">589574</span>
-                <button onclick="copyToClipboard('589574')" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold">Copiar</button>
+              <div class="space-y-1 pt-0.5">
+                <div class="flex items-center justify-between text-[11px]">
+                  <span class="text-slate-300">ID CLUB: <strong class="text-white font-mono">958819</strong></span>
+                  <button onclick="copyToClipboard('958819')" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold">Copiar</button>
+                </div>
+                <div class="flex items-center justify-between text-[11px]">
+                  <span class="text-slate-300">ID Ref: <strong class="text-white font-mono">72288452</strong></span>
+                  <button onclick="copyToClipboard('72288452')" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold">Copiar</button>
+                </div>
               </div>
             </div>
           </div>
@@ -937,9 +1424,12 @@
           <span class="text-slate-400 text-[10px] block">Suprema Poker Club ID</span>
           <strong class="text-orange-400 font-mono">62546</strong>
         </div>
-        <div class="p-3 rounded-xl bg-slate-950 border border-cyan-500/30 text-center">
-          <span class="text-slate-400 text-[10px] block">ClubGG Club ID</span>
-          <strong class="text-cyan-400 font-mono">589574</strong>
+        <div class="p-3 rounded-xl bg-slate-950 border border-cyan-500/30 text-center space-y-1">
+          <span class="text-slate-400 text-[10px] block font-mono">ClubGG Credentials</span>
+          <div class="text-[11px] font-mono">
+            <span class="text-slate-300">ID CLUB: <strong class="text-cyan-400">958819</strong></span> | 
+            <span class="text-slate-300">ID Ref: <strong class="text-cyan-400">72288452</strong></span>
+          </div>
         </div>
       </div>
     </div>
@@ -1089,31 +1579,31 @@
 
     const WINNERS = [
       {
-        championName: 'guillarbu',
-        tournamentTitle: '15K WED FREEZEOUT',
-        prize: '$3,798.21',
-        bounty: null,
-        date: 'Campeón Estelar',
-        picture: '/ganadores/guillarbu.JPG',
+        championName: 'COMANCHE2 🇪🇨',
+        tournamentTitle: 'Bounty Hunters Big Game $21.60',
+        prize: '$6,529.11',
+        bounty: '$2,902.96 (Recompensa)',
+        date: '1º Puesto de 3,805 jug.',
+        picture: '/ganadores/ganador 2.JPG',
         badge: 'CAMPEÓN 🏆'
       },
       {
-        championName: 'El-algoritmo',
-        tournamentTitle: 'MYSTERY BOUNTY',
-        prize: '$95.68',
-        bounty: '$129.84',
-        date: 'Campeón Cazador',
-        picture: null,
-        badge: 'CAMPEÓN 🎯'
+        championName: 'Josue2806 🇪🇨',
+        tournamentTitle: 'GLADIATOR • 5000 to 1ST • 6-MAX NLH',
+        prize: '$7,062.22',
+        bounty: null,
+        date: '1º Puesto de 289 jug.',
+        picture: '/ganadores/ganador 3.png',
+        badge: 'CAMPEÓN 🥇'
       },
       {
-        championName: 'Bolek10',
-        tournamentTitle: '7K SUPERBOUNTY',
-        prize: '$657.72',
-        bounty: '$1,833.75',
-        date: 'Campeón Estelar',
-        picture: null,
-        badge: 'CAMPEÓN 👑'
+        championName: 'Cienke_333',
+        tournamentTitle: '5 BUY-IN 5555 GTD (24)',
+        prize: '$1,636.76',
+        bounty: null,
+        date: '1º Puesto (XMTT NLH)',
+        picture: '/ganadores/ganador.JPG',
+        badge: 'CAMPEÓN 🎯'
       }
     ];
 
