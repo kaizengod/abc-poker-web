@@ -479,62 +479,97 @@
           </p>
         </div>
 
-        <!-- Interactive Creative Roadmap Timeline -->
-        <div class="space-y-6">
-          <div class="text-center">
-            <h3 class="text-xl sm:text-2xl font-black text-amber-400 font-display uppercase tracking-wider">
-              🚀 RUTA DE APRENDIZAJE & ROADMAP ACADEMY
+        <!-- Minimalist Creative Line Roadmap Timeline -->
+        <div class="space-y-10 py-6">
+          <div class="text-center space-y-2">
+            <h3 class="text-xl sm:text-3xl font-black text-amber-400 font-display uppercase tracking-wider">
+              🚀 RUTA DE APRENDIZAJE ACADEMY
             </h3>
-            <p class="text-xs text-slate-400 font-mono mt-1">Estructura progresiva diseñada para llevar tu juego al siguiente nivel</p>
+            <p class="text-xs text-slate-400 font-mono">Estructura progresiva con puntos clave para potenciar tu nivel de juego</p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative">
-            <!-- Milestone 1 -->
-            <div class="glass-card-translucent p-6 rounded-3xl space-y-3 relative group border border-cyan-500/30 hover:border-cyan-400 transition-all cursor-pointer">
-              <div class="flex items-center justify-between">
-                <span class="w-10 h-10 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 font-mono font-black text-sm flex items-center justify-center shadow-lg">01</span>
-                <i data-lucide="book-open" class="w-6 h-6 text-cyan-400"></i>
-              </div>
-              <h4 class="text-lg font-black text-white font-display">Academy Básica</h4>
-              <p class="text-xs text-slate-200 leading-relaxed">
-                Conceptos fundamentales y estructura de aprendizaje.
-              </p>
-            </div>
+          <div class="relative max-w-5xl mx-auto px-4">
+            <!-- Connecting Line for Desktop (Horizontal) -->
+            <div class="hidden md:block absolute top-7 left-16 right-16 h-0.5 bg-gradient-to-r from-cyan-500/60 via-amber-500/60 via-purple-500/60 to-emerald-500/60 z-0"></div>
+            
+            <!-- Connecting Line for Mobile (Vertical) -->
+            <div class="md:hidden absolute top-7 bottom-7 left-11 w-0.5 bg-gradient-to-b from-cyan-500/60 via-amber-500/60 via-purple-500/60 to-emerald-500/60 z-0"></div>
 
-            <!-- Milestone 2 -->
-            <div class="glass-card-translucent p-6 rounded-3xl space-y-3 relative group border border-amber-500/30 hover:border-amber-400 transition-all cursor-pointer">
-              <div class="flex items-center justify-between">
-                <span class="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-400 font-mono font-black text-sm flex items-center justify-center shadow-lg">02</span>
-                <i data-lucide="trending-up" class="w-6 h-6 text-amber-400"></i>
+            <!-- Steps Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 relative z-10">
+              
+              <!-- Step 1: Básica -->
+              <div class="flex md:flex-col items-start md:items-center text-left md:text-center gap-4 group cursor-pointer">
+                <!-- Glowing Node Point -->
+                <div class="relative shrink-0">
+                  <div class="w-14 h-14 rounded-full bg-slate-950 border-2 border-cyan-500 text-cyan-400 flex items-center justify-center shadow-lg shadow-cyan-500/30 group-hover:scale-110 group-hover:border-cyan-300 group-hover:bg-cyan-950/50 transition-all duration-300">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                  </div>
+                  <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-cyan-400 text-[10px] font-black text-slate-950 flex items-center justify-center font-mono shadow-md">1</span>
+                </div>
+                <!-- Content -->
+                <div class="space-y-1 pt-1 md:pt-0">
+                  <h4 class="text-base sm:text-lg font-black text-white font-display group-hover:text-cyan-300 transition-colors">Academy Básica</h4>
+                  <p class="text-xs text-slate-300 leading-relaxed max-w-xs">
+                    Conceptos fundamentales y estructura de aprendizaje.
+                  </p>
+                </div>
               </div>
-              <h4 class="text-lg font-black text-white font-display">Academy Avanzada</h4>
-              <p class="text-xs text-slate-200 leading-relaxed">
-                Contenido especializado, análisis y desarrollo del jugador.
-              </p>
-            </div>
 
-            <!-- Milestone 3 -->
-            <div class="glass-card-translucent p-6 rounded-3xl space-y-3 relative group border border-purple-500/30 hover:border-purple-400 transition-all cursor-pointer">
-              <div class="flex items-center justify-between">
-                <span class="w-10 h-10 rounded-2xl bg-purple-500/20 border border-purple-500/40 text-purple-400 font-mono font-black text-sm flex items-center justify-center shadow-lg">03</span>
-                <i data-lucide="award" class="w-6 h-6 text-purple-400"></i>
+              <!-- Step 2: Avanzada -->
+              <div class="flex md:flex-col items-start md:items-center text-left md:text-center gap-4 group cursor-pointer">
+                <!-- Glowing Node Point -->
+                <div class="relative shrink-0">
+                  <div class="w-14 h-14 rounded-full bg-slate-950 border-2 border-amber-500 text-amber-400 flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:scale-110 group-hover:border-amber-300 group-hover:bg-amber-950/50 transition-all duration-300">
+                    <i data-lucide="brain" class="w-6 h-6"></i>
+                  </div>
+                  <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-amber-400 text-[10px] font-black text-slate-950 flex items-center justify-center font-mono shadow-md">2</span>
+                </div>
+                <!-- Content -->
+                <div class="space-y-1 pt-1 md:pt-0">
+                  <h4 class="text-base sm:text-lg font-black text-white font-display group-hover:text-amber-300 transition-colors">Academy Avanzada</h4>
+                  <p class="text-xs text-slate-300 leading-relaxed max-w-xs">
+                    Contenido especializado, análisis y desarrollo del jugador.
+                  </p>
+                </div>
               </div>
-              <h4 class="text-lg font-black text-white font-display">Mentores</h4>
-              <p class="text-xs text-slate-200 leading-relaxed">
-                Profesionales y jugadores con experiencia que comparten conocimiento.
-              </p>
-            </div>
 
-            <!-- Milestone 4 -->
-            <div class="glass-card-translucent p-6 rounded-3xl space-y-3 relative group border border-emerald-500/30 hover:border-emerald-400 transition-all cursor-pointer">
-              <div class="flex items-center justify-between">
-                <span class="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-mono font-black text-sm flex items-center justify-center shadow-lg">04</span>
-                <i data-lucide="users" class="w-6 h-6 text-emerald-400"></i>
+              <!-- Step 3: Mentores -->
+              <div class="flex md:flex-col items-start md:items-center text-left md:text-center gap-4 group cursor-pointer">
+                <!-- Glowing Node Point -->
+                <div class="relative shrink-0">
+                  <div class="w-14 h-14 rounded-full bg-slate-950 border-2 border-purple-500 text-purple-400 flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 group-hover:border-purple-300 group-hover:bg-purple-950/50 transition-all duration-300">
+                    <i data-lucide="user-check" class="w-6 h-6"></i>
+                  </div>
+                  <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-purple-400 text-[10px] font-black text-slate-950 flex items-center justify-center font-mono shadow-md">3</span>
+                </div>
+                <!-- Content -->
+                <div class="space-y-1 pt-1 md:pt-0">
+                  <h4 class="text-base sm:text-lg font-black text-white font-display group-hover:text-purple-300 transition-colors">Mentores</h4>
+                  <p class="text-xs text-slate-300 leading-relaxed max-w-xs">
+                    Profesionales y jugadores con experiencia que comparten conocimiento.
+                  </p>
+                </div>
               </div>
-              <h4 class="text-lg font-black text-white font-display">Comunidad</h4>
-              <p class="text-xs text-slate-200 leading-relaxed">
-                Aprender acompañado permite compartir experiencias y perspectivas.
-              </p>
+
+              <!-- Step 4: Comunidad -->
+              <div class="flex md:flex-col items-start md:items-center text-left md:text-center gap-4 group cursor-pointer">
+                <!-- Glowing Node Point -->
+                <div class="relative shrink-0">
+                  <div class="w-14 h-14 rounded-full bg-slate-950 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 group-hover:border-emerald-300 group-hover:bg-emerald-950/50 transition-all duration-300">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                  </div>
+                  <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-emerald-400 text-[10px] font-black text-slate-950 flex items-center justify-center font-mono shadow-md">4</span>
+                </div>
+                <!-- Content -->
+                <div class="space-y-1 pt-1 md:pt-0">
+                  <h4 class="text-base sm:text-lg font-black text-white font-display group-hover:text-emerald-300 transition-colors">Comunidad</h4>
+                  <p class="text-xs text-slate-300 leading-relaxed max-w-xs">
+                    Aprender acompañado permite compartir experiencias y perspectivas.
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
